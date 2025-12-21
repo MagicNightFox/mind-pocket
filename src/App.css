@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Optional: prevent blue focus ring in some browsers */
+.ql-editor {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}

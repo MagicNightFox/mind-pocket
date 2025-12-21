@@ -1,0 +1,10 @@
+{
+  "SidePanel": {
+    "Subheaders": {
+      "MainMenu": "Hlavní nabídka"
+    },
+    "Items": {
+      "Dashboard": "Nástěnka"
+    }
+  }
+}
