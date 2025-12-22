@@ -19,9 +19,9 @@ function App() {
   const drawerWidth = viewport === "phone" ? 0 : 256;
   return (
       <BrowserRouter>
-        <Box sx={{display:"flex"}}>
+        <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
           <SidePanel drawerWidth={drawerWidth} />
-          <Box flexGrow={1} sx={{bgcolor: "#FAFAFA", minHeight: "100vh"}}>
+          <Box flexGrow={1} sx={{overflowX:"hidden"}} >
             <Routes>
               <Route path="/" element ={<PersonalDashboard />} />
               <Route path="/characters" element ={<CharacterList />} />

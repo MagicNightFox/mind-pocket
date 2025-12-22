@@ -80,6 +80,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (dtoIn) => {
     const response = await loginUser(dtoIn);
+    console.log(response);
     setToken(response.data.accessToken);
     setUser(response.data.user);
   }

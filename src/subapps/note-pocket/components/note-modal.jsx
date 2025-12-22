@@ -1,15 +1,14 @@
 import {Box,Modal} from "@mui/material";
 import NoteTextEditor from "./note-text-editor.jsx";
 import {useState} from "react";
-import Button from "@mui/material/Button";
 import {NOTE_COLORS} from "../constants.js";
+import {useViewport} from "../../../context/ViewportContext.jsx";
 
 const modalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   height: "50%",
-  width: "25%",
   transform: 'translate(-50%, -50%)',
   boxShadow: 24,
   p:1
@@ -18,12 +17,16 @@ const modalStyle = {
 
 const NoteModal = (props) => {
   const {open, handleClose, onSubmit, data} = props;
-  const [color, setColor] = useState(data?.color || "yellow");
+  const [color, setColor] = useState(null);
+  const viewport = useViewport();
   return <Modal
     open={open}
-    onClose={handleClose}
+    onClose={(e) => {
+      setColor(null);
+      handleClose(e)
+    }}
   >
-    <Box sx={modalStyle} bgcolor={NOTE_COLORS[color]}>
+    <Box sx={{...modalStyle, width: viewport === "phone" ? "90%" : "25%"}} bgcolor={NOTE_COLORS[color || data?.color]}>
       <Box display="flex" width="100%" justifyContent="flex-end" gap="8px" >
         {Object.entries(NOTE_COLORS).map(([key, value]) => (
           <Box bgcolor={value} key={key} width="16px" height="16px"
@@ -32,7 +35,10 @@ const NoteModal = (props) => {
                onClick={() => setColor(key)}/>
         ))}
       </Box>
-      <NoteTextEditor defaultValue={data && data.content} onSubmit={(submittedData) => onSubmit({content: submittedData, color})}/>
+      <NoteTextEditor defaultValue={data && data.content} onSubmit={(submittedData) => {
+        onSubmit({content: submittedData, color})
+        setColor(null);
+      }}/>
     </Box>
   </Modal>
 }

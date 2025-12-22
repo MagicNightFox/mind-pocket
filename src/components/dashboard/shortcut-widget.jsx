@@ -9,16 +9,15 @@ import {
   Tooltip
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import {FICTION_SCHEMA} from "../../Constants.js";
 import Button from "@mui/material/Button";
 import {useState} from "react";
-import {Link as ReactLink} from "react-router";
-import Widget from "../widget.jsx";
 import Box from "@mui/material/Box";
+import {useAuth} from "../../context/AuthContext.jsx";
+import {update} from "../../calls.js";
 
 
-const ShortcutWidget = (props) => {
-  const {shortcuts, updateShortcuts} = props;
+const ShortcutWidget = () => {
+  const {user} = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const [shortcut, setShortcut] = useState(false);
   function handleEditShortcut(item){
@@ -30,16 +29,16 @@ const ShortcutWidget = (props) => {
     setShortcut(undefined);
   }
 
-  function handleSubmit(event){
+  async function handleSubmit(event){
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
-    updateShortcuts([...shortcuts, formJson]);
+    await update({id: user.id, shortcuts: [...user.shortcuts, formJson]});
     handleClose();
   }
 
   return <Box>
-    {shortcuts?.map((item, i) => (
+    {user?.shortcuts?.map((item, i) => (
       <Tooltip title={item.title} key={"shortcut" + i}>
         <IconButton href={item.url} target="_blank" rel="noopener noreferrer">
           <Avatar sx={{height: "64px", width: "64px"}} src={item.iconUrl || item.uri+"/favicon.ico"} alt={item.title}>{item.title[0]}</Avatar>

@@ -1,7 +1,7 @@
 import {Button, TextField} from "@mui/material";
 import {useAuth} from "../../context/AuthContext.jsx";
 
-const LoginComponent = (props) => {
+const LoginComponent = () => {
   const {login} = useAuth();
   async function handleSubmit(event) {
     event.preventDefault();

@@ -1,32 +1,17 @@
-import {Link as ReactLink, useLocation} from "react-router";
 import {
   Divider,
   Drawer,
-  ListItem,
   Toolbar,
-  List,
-  ListItemButton,
-  ListSubheader,
-  Collapse,
-  createTheme, ThemeProvider, ListItemIcon, ListItemText, useMediaQuery, useTheme,
+  createTheme, ThemeProvider
 } from "@mui/material";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import {useState} from "react";
-import {useAuth} from "../../context/AuthContext.jsx";
-import {SIDE_MENU_ITEMS} from "../../Constants.js";
 import MenuList from "./menu-list.jsx";
 import {useLang} from "../../lang/LanguageContext.jsx";
+import {useViewport} from "../../context/ViewportContext.jsx";
 
 const SidePanel = props => {
-  const etheme = useTheme();
   const {language} = useLang()
-  const tablet = useMediaQuery(etheme.breakpoints.down('md'));
-  const phone = useMediaQuery(etheme.breakpoints.down('sm'));
-  const {user} = useAuth();
+  const viewport = useViewport();
   const {drawerWidth} = props;
-  let userMenuItems = SIDE_MENU_ITEMS.filter(item => user.subscribedSubAppsIdList.includes(item.id));
 
   const theme = createTheme({
     palette: {
@@ -54,7 +39,7 @@ const SidePanel = props => {
   })
 
   return <ThemeProvider theme={theme}>
-    <Drawer anchor="left" variant="persistent" open={!phone} sx={{
+    <Drawer anchor="left" variant="persistent" open={viewport !== "phone"} sx={{
       width: drawerWidth,
       flexShrink: 0,
       '& .MuiDrawer-paper': {
@@ -65,7 +50,7 @@ const SidePanel = props => {
       <Toolbar >
       </Toolbar>
       <Divider/>
-      <MenuList title={language.SidePanel.Subheaders.MainMenu} itemsToRender={userMenuItems} />
+      <MenuList title={language.SidePanel.Subheaders.MainMenu} />
     </Drawer>
   </ThemeProvider>
 }

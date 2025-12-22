@@ -9,7 +9,6 @@ const Note = (props) => {
   const {data, key, handleDelete, onClick} = props;
   const [elevation, setElevation] = useState(1);
   const safeHTML = DOMPurify.sanitize(data?.content?.html, {USE_PROFILES: {html: true}});
-  const width= 256;
   const [isMouseOverDelete, setIsMouseOverDelete] = useState(false);
   return <Paper
     key={key}
@@ -18,24 +17,24 @@ const Note = (props) => {
     onMouseLeave={() => setElevation(1)}
     elevation={elevation}
     sx={{bgcolor: NOTE_COLORS[data?.color] || "#FFFDCC",
-      width: `${width}px`,
+      minWidth:"256px",
+      maxWidth:"256px",
       cursor: "pointer",
       padding: "8px",
-      textOverflow: "ellipsis",
       overflow: "hidden",
       whiteSpace: "nowrap",
-      margin: "4px",
-      maxHeight:"128px",
-      minHeight:"32px"
+      minHeight:"32px",
+      flexShrink: 0,
+      position: "relative"
     }}>
-    {elevation > 1 && <Box position="absolute" width={width + "px"} display="flex" justifyContent="flex-end">
+    {elevation === 3 && <Box position="absolute" display="flex" justifyContent="flex-end" right={8} >
       <IconButton
         onMouseEnter={() => setIsMouseOverDelete(true)}
         onMouseLeave={() => setIsMouseOverDelete(false)}>
         <DeleteIcon fontSize="small" color="error" />
       </IconButton>
     </Box>}
-    <div dangerouslySetInnerHTML={{ __html: safeHTML }}/>
+    <div style={{maxHeight: "0"}} dangerouslySetInnerHTML={{ __html: safeHTML }}/>
   </Paper>
 }
 

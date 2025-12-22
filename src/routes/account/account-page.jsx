@@ -1,9 +1,9 @@
-import {Box, Card, Container, Grid, Autocomplete, Chip, TextField, Tooltip} from "@mui/material";
+import {Box, Container, Autocomplete, TextField, Tooltip} from "@mui/material";
 import TopBar from "../../components/topbar/top-bar.jsx";
 import Button from "@mui/material/Button";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {SIDE_MENU_ITEMS} from "../../Constants.js";
-import {updateSettings} from "../../calls.js";
+import {update} from "../../calls.js";
 import {useState} from "react";
 
 const AccountPage = () => {
@@ -11,7 +11,7 @@ const AccountPage = () => {
   const [userMenuItems, setUserMenuItems] = useState([]);
   let userOptions = SIDE_MENU_ITEMS.filter(item => user.subscribedSubAppsIdList.includes(item.id));
   async function handleSubmit() {
-    await updateSettings({
+    await update({
       menuList: userMenuItems,
     });
   }

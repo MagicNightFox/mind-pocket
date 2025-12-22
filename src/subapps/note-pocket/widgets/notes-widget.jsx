@@ -8,6 +8,7 @@ import {createNote, deleteNote, listNotes, updateNote} from "../calls.js";
 import Widget from "../../../components/widget.jsx"
 import Note from "../components/note.jsx"
 import NoteModal from "../components/note-modal.jsx";
+import Button from "@mui/material/Button";
 
 const NotesWidget = () => {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -15,9 +16,9 @@ const NotesWidget = () => {
   const queryClient = useQueryClient()
   const {data: notes, error, isLoading} = useQuery({queryKey:["notesData"], queryFn: listNotes});
   async function Submit(data){
-    console.log(data)
     if(!selectedNote){createMutation.mutate(data)}
-    else updateMutation.mutate({id:selectedNote._id, content: data});
+    else updateMutation.mutate({id:selectedNote._id, ...data});
+    handleClose();
   }
 
   function handleClose(){
@@ -60,7 +61,8 @@ const NotesWidget = () => {
   }
   const sorted = notes.data.sort((a,b) => {
     return (new Date(b.updatedAt) - new Date(a.updatedAt))
-  })
+  }).slice(0,10);
+
   return <Widget title={"Notes"} flexGrow={1} actionBar={
     <IconButton size="small" onClick={() => {
       setSelectedNote(null);
@@ -72,9 +74,11 @@ const NotesWidget = () => {
     <Box gap="16px"
          display="flex"
          flexDirection="row"
-         style={{
+         padding="8px"
+         sx={{
            overflowX:"auto",
            overflowY:"hidden",
+           height: "100%",
          }}
     >
       {sorted.map((note) => (
@@ -85,6 +89,7 @@ const NotesWidget = () => {
               }}
               handleDelete={() => handleDelete(note._id)}/>
       ))}
+      <Button>See more</Button>
     </Box>
     <NoteModal data={selectedNote} open={openModal} handleClose={handleClose} onSubmit={Submit}/>
   </Widget>

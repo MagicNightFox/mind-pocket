@@ -23,7 +23,7 @@ async function getCharacter(id) {
   return response;
 }
 
-async function createCharacter(characterData) {
+async function createCharacter() {
 
 }
 
@@ -57,8 +57,8 @@ async function logoutUser() {
   return data;
 }
 
-async function updateSettings(newSettings){
-  let {data} = await axios.post(`${BASE_URI}/user/update`, newSettings, {
+async function update(updatedData){
+  let {data} = await axios.post(`${BASE_URI}/user/update`, updatedData, {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -66,7 +66,7 @@ async function updateSettings(newSettings){
   return data;
 }
 
-async function listNotes(filter) {
+async function listNotes() {
   let response = await axios.get(`${BASE_URI}/note/list`);
   return response;
 }
@@ -91,7 +91,7 @@ export {
   grantToken,
   loginUser,
   logoutUser,
-  updateSettings,
+  update,
   listNotes,
   createNote
 }
