@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router";
 
 const baseRoute = "NotePocket/"
 const NotePocket = () => {
+
   return <Routes>
     <Route path={baseRoute} element={<Dashboard />} />
     <Route path={baseRoute} element={<NoteListPage />} />

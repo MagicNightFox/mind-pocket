@@ -7,7 +7,7 @@ export const LangContext = createContext(null);
 
 /**
  * @typedef {Object} LangContextValue
- * @property {LanguageDict} language
+ * @property {LanguageDict} t
  * @property {(lang: "en" | "cs") => void} setLang
  * @property {"en" | "cs"} lang
  */

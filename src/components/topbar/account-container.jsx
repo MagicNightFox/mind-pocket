@@ -8,8 +8,10 @@ import {Link as ReactLink} from "react-router";
 import {useState} from "react";
 import {useAuth} from "../../context/AuthContext.jsx";
 import PersonIcon from '@mui/icons-material/Person';
+import {useLang} from "../../lang/LanguageContext.jsx";
 
 const AccountContainer = (props) => {
+  const {t} = useLang();
   const [accAncholEl, setAccAncholEl] = useState(null);
   const openAcc = Boolean(accAncholEl);
   const {logout} = useAuth()
@@ -63,25 +65,25 @@ const AccountContainer = (props) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
         <MenuItem component={ReactLink} to="/profile/">
-            <Avatar /> My Profile
+            <Avatar /> {t.AccountMenu.MyProfile}
         </MenuItem>
         <Divider/>
         <MenuItem component={ReactLink} to="/account">
           <ListItemIcon>
             <PersonIcon/>
-          </ListItemIcon> My Account
+          </ListItemIcon> {t.AccountMenu.MyAccount}
         </MenuItem>
         <MenuItem component={ReactLink} to="/account/settings">
             <ListItemIcon>
               <Settings />
             </ListItemIcon>
-            Settings
+          {t.AccountMenu.Settings}
         </MenuItem>
         <MenuItem onClick={logout}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
-            Log out
+          {t.AccountMenu.LogOut}
         </MenuItem>
   </Menu>
 </Box>

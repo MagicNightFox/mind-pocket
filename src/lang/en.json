@@ -1,10 +1,48 @@
 {
+  "AppName": "MindPocket",
+  "Breadcrumbs": {
+    "Personal": "Personal",
+    "Account": "Account",
+    "Dashboard": "Dashboard"
+  },
+  "AccountPage": {
+    "Settings" : "Settings",
+    "Language": "Language",
+    "Czech": "Czech",
+    "English": "English",
+    "SavePrefs": "Save preferences"
+  },
+  "LoginComponent": {
+    "Login": "Login",
+    "Username": "Username",
+    "Password": "Password",
+    "RegisterPrompt": "Don't have an account? Create one!",
+    "LoginPrompt": "Already have an account? Log in!",
+    "Register": "Register"
+  },
   "SidePanel": {
     "Subheaders": {
       "MainMenu": "Main menu"
     },
     "Items": {
       "Dashboard": "Dashboard"
+    }
+  },
+  "AccountMenu":  {
+    "MyProfile": "My Profile",
+    "MyAccount": "My Account",
+    "Settings": "Settings",
+    "LogOut": "Log out"
+  },
+  "SubApps": {
+    "NotePocket": {
+      "NotesWidget": {
+        "Notes": "Notes",
+        "SeeMore": "See more"
+      },
+      "NoteModal": {
+        "Save": "Save"
+      }
     }
   }
 }

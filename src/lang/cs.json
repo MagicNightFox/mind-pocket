@@ -1,10 +1,48 @@
 {
+  "AppName": "MindPocket",
+  "Breadcrumbs": {
+    "Personal": "Osobní",
+    "Account": "Účet",
+    "Dashboard": "Nástěnka"
+  },
+  "AccountPage": {
+    "Settings" : "Nastavení",
+    "Language": "Jazyk",
+    "Czech": "Čeština",
+    "English": "Angličtina",
+    "SavePrefs": "Uložit nastavení"
+  },
+  "LoginComponent": {
+    "Login": "Přihlásit",
+    "Username": "Přezdívka",
+    "Password": "Heslo",
+    "RegisterPrompt": "Nemáte účet? Registrujte se!",
+    "LoginPrompt": "Máte účet? Přihlašte se!",
+    "Register": "Registrovat"
+  },
   "SidePanel": {
     "Subheaders": {
       "MainMenu": "Hlavní nabídka"
     },
     "Items": {
       "Dashboard": "Nástěnka"
+    }
+  },
+  "AccountMenu":  {
+    "MyProfile": "Profil",
+    "MyAccount": "Účet",
+    "Settings": "Nastavení",
+    "LogOut": "Odhlásit"
+  },
+  "SubApps": {
+    "NotePocket": {
+      "NotesWidget": {
+        "Notes": "Poznámky",
+        "SeeMore": "Zobrazit vše"
+      },
+      "NoteModal": {
+        "Save": "Uložit"
+      }
     }
   }
 }

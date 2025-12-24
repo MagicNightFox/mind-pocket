@@ -9,8 +9,10 @@ import Widget from "../../../components/widget.jsx"
 import Note from "../components/note.jsx"
 import NoteModal from "../components/note-modal.jsx";
 import Button from "@mui/material/Button";
+import {useLang} from "../../../lang/LanguageContext.jsx";
 
 const NotesWidget = () => {
+  const {t} = useLang();
   const [selectedNote, setSelectedNote] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient()
@@ -63,7 +65,7 @@ const NotesWidget = () => {
     return (new Date(b.updatedAt) - new Date(a.updatedAt))
   }).slice(0,10);
 
-  return <Widget title={"Notes"} flexGrow={1} actionBar={
+  return <Widget title={t.SubApps.NotePocket.NotesWidget.Notes} flexGrow={1} actionBar={
     <IconButton size="small" onClick={() => {
       setSelectedNote(null);
       setOpenModal(true)
@@ -89,7 +91,7 @@ const NotesWidget = () => {
               }}
               handleDelete={() => handleDelete(note._id)}/>
       ))}
-      <Button>See more</Button>
+      <Button>{t.SubApps.NotePocket.NotesWidget.SeeMore}</Button>
     </Box>
     <NoteModal data={selectedNote} open={openModal} handleClose={handleClose} onSubmit={Submit}/>
   </Widget>

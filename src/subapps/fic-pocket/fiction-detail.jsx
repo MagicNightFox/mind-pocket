@@ -15,9 +15,9 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import {FICTION_SCHEMA, STATUS} from "../Constants.js";
-import TextEditor from "../components/TextEditor.jsx";
-import TopBar from "../components/topbar/top-bar.jsx";
+import {FICTION_SCHEMA, STATUS} from "../../Constants.js";
+import TextEditor from "../../components/TextEditor.jsx";
+import TopBar from "../../components/topbar/top-bar.jsx";
 
 const InfoLine = (key, value) => {
   return <div>

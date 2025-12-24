@@ -1,15 +1,15 @@
 
 import {Link, useNavigate} from "react-router";
 import {useState} from "react";
-import {formatDate} from "../helper-component.js";
+import {formatDate} from "../../helper-component.js";
 import {DataGrid, ToolbarButton, Toolbar} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import {createCharacter, listCharacters} from "../calls.js";
+import {createCharacter, listCharacters} from "../../calls.js";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {Alert, CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
-import CustomToolbar from "./material-overrides/custom-toolbar.jsx";
+import CustomToolbar from "../../components/material-overrides/custom-toolbar.jsx";
 import GppBadIcon from '@mui/icons-material/GppBad';
 const columns = [
   { field: "name", headerName: "Name", width: 300 },

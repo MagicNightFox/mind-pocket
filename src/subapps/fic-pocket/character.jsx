@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import {DataGrid} from "@mui/x-data-grid";
-import CharacterDetail from "../components/character-detail.jsx";
-import TopBar from "../components/topbar/top-bar.jsx";
+import CharacterDetail from "./character-detail.jsx";
+import TopBar from "../../components/topbar/top-bar.jsx";
 
 const columns = [
   { field: "title", headerName: "Title", width: 200 },

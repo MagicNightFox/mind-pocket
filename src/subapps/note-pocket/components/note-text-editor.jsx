@@ -9,11 +9,13 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import IconButton from "@mui/material/IconButton";
+import {useLang} from "../../../lang/LanguageContext.jsx";
 
 const Delta = Quill.import("delta");
 
 const NoteTextEditor = (props) => {
   const { defaultValue, onSubmit } = props;
+  const {t} = useLang();
 
   const [range, setRange] = useState();
   const [readOnly, setReadOnly] = useState(false);
@@ -94,7 +96,7 @@ const NoteTextEditor = (props) => {
       {/* ✅ SUBMIT BUTTON */}
       <Box display="flex" justifyContent="flex-end" p={2}>
         <Button variant="contained" onClick={handleSubmit} >
-          Save
+          {t.SubApps.NotePocket.NoteModal.Save}
         </Button>
       </Box>
     </Box>

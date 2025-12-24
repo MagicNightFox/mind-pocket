@@ -1,8 +1,8 @@
-import CharacterDataList from "../../components/character-list.jsx";
+import CharacterDataList from "../character-list.jsx";
 import {Container} from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
-import TopBar from "../../components/topbar/top-bar.jsx";
+import TopBar from "../../../components/topbar/top-bar.jsx";
 import Button from "@mui/material/Button";
 const CharacterList = () => {
   return <Box>

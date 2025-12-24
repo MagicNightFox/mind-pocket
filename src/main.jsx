@@ -8,21 +8,24 @@ import App from './App.jsx'
 import {AuthProvider} from "./components/providers/auth-provider.jsx";
 import LanguageProvider from "./components/providers/language-provider.jsx";
 import ViewportProvider from "./components/providers/viewport-provider.jsx";
+import {CookiesProvider} from "react-cookie";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <ViewportProvider>
-        <LanguageProvider>
+    <CookiesProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ViewportProvider>
           <AuthProvider>
-            <QueryClientProvider client={queryClient}>
-              <App />
-            </QueryClientProvider>
+          <LanguageProvider>
+              <QueryClientProvider client={queryClient}>
+                <App />
+              </QueryClientProvider>
+          </LanguageProvider>
           </AuthProvider>
-        </LanguageProvider>
-      </ViewportProvider>
-    </LocalizationProvider>
+        </ViewportProvider>
+      </LocalizationProvider>
+    </CookiesProvider>
   </StrictMode>,
 )

@@ -3,19 +3,22 @@ import {LangContext} from "../../lang/LanguageContext.jsx";
 import {useMemo, useState} from "react";
 import en from "../../lang/en.json"
 import cs from "../../lang/cs.json"
+import {useAuth} from "../../context/AuthContext.jsx";
 
-const DICTIONARY = {
-  en, cs
-}
 const LanguageProvider = ({children}) => {
-  const [lang, setLang] = useState("en");
+  const {user} = useAuth();
+  const [lang, setLang] = useState(user.preferences.language);
+
+  let DICTIONARY = {
+    en, cs
+  }
 
   /** @type {import("../../lang/en.json")} */
-  const language = DICTIONARY[lang] ?? DICTIONARY.en;
+  const t = DICTIONARY[lang] ?? DICTIONARY.en;
 
   const value = useMemo(() => ({
-    lang, setLang, language
-  }),[lang, language]);
+    lang, setLang, t
+  }),[lang, t]);
 
   return <LangContext.Provider value={value}>
     {children}

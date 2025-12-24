@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
 import {Link as ReactLink} from "react-router";
 import Menu from "@mui/material/Menu";
-import TopBar from "../components/topbar/top-bar.jsx";
+import TopBar from "../../components/topbar/top-bar.jsx";
 
 const RecipePage = () => {
   return <>

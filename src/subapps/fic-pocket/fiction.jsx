@@ -13,8 +13,8 @@ import {
   TextField
 } from "@mui/material";
 import Button from "@mui/material/Button";
-import TopBar from "../components/topbar/top-bar.jsx";
-import CustomToolbar from "../components/material-overrides/custom-toolbar.jsx";
+import TopBar from "../../components/topbar/top-bar.jsx";
+import CustomToolbar from "../../components/material-overrides/custom-toolbar.jsx";
 
 const columns = [
   { field: "title", headerName: "Title", width: 200 },

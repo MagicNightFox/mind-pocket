@@ -4,13 +4,17 @@ import ShortcutWidget from "../components/dashboard/shortcut-widget.jsx";
 import NotesWidget from "../subapps/note-pocket/widgets/notes-widget.jsx";
 import {DateCalendar} from "@mui/x-date-pickers";
 import Row from "../components/row.jsx";
+import {useLang} from "../lang/LanguageContext.jsx";
 
-const breadcrumbs = [
-  {link: "/", title: "Personal"},
-  {link: "/", title: "Dashboard"},
-]
+
 
 const PersonalDashboard = () => {
+  const {t} = useLang();
+
+  const breadcrumbs = [
+    {link: "/", title: t.Breadcrumbs.Personal},
+    {link: "/", title: t.Breadcrumbs.Dashboard},
+  ];
 
   return <>
   <TopBar breadcrumbList={breadcrumbs}/>

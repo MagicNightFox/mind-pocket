@@ -1,14 +1,14 @@
 import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router";
 import Box from "@mui/material/Box";
-import Character from "./routes/character.jsx";
-import Fiction from "./routes/fiction.jsx";
-import FictionDetailPage from "./routes/fiction-detail.jsx";
+import Character from "./subapps/fic-pocket/character.jsx";
+import Fiction from "./subapps/fic-pocket/fiction.jsx";
+import FictionDetailPage from "./subapps/fic-pocket/fiction-detail.jsx";
 import Profile from "./routes/profile.jsx";
-import RecipePage from "./routes/recipes.jsx";
+import RecipePage from "./subapps/cook-pocket/recipes.jsx";
 import LoginPage from "./routes/login-page.jsx";
 import SidePanel from "./components/side-panel/side-panel.jsx";
-import CharacterList from "./routes/character/list.jsx";
+import CharacterList from "./subapps/fic-pocket/character/list.jsx";
 import AccountPage from "./routes/account/account-page.jsx";
 import PersonalDashboard from "./routes/personal-dashboard.jsx";
 import NotePocket from "./subapps/note-pocket/index.jsx";

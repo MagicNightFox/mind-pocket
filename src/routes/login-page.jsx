@@ -1,4 +1,4 @@
-import {Container, TextField} from "@mui/material";
+import {Container, SvgIcon, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import LoginComponent from "../components/auth/login-component.jsx";
@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   return <Container>
     <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
-      <Typography variant="h5" component="h2" textAlign="center">Brainstore</Typography>
+      <Typography variant="h5" component="h2" textAlign="center">MindPocket</Typography>
       {hasAccount ? <LoginComponent /> : <RegisterComponent />}
       <Button variant="text" onClick={()=> setHasAccount(!hasAccount)}>
         {hasAccount ? "Don't have an account? Create one!" : "Already have an account? Log in!"}

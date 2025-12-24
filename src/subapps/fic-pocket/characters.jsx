@@ -1,4 +1,4 @@
-import CharacterDataList from "../components/character-list.jsx";
+import CharacterDataList from "./character-list.jsx";
 import {Container} from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";

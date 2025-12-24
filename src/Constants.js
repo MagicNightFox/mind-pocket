@@ -56,3 +56,7 @@ export const STATUS = {
 export const SIDE_MENU_ITEMS = [
   {title: "Character list", id: "goonCave", url: "/characters"},
   {title: "Fiction Archive", id: "fictionArchive", url: "/fiction"},];
+
+export const COOKIES = {
+  userPreferences: "user-preferences"
+}

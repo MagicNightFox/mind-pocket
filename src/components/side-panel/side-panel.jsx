@@ -9,7 +9,7 @@ import {useLang} from "../../lang/LanguageContext.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
 
 const SidePanel = props => {
-  const {language} = useLang()
+  const {t} = useLang()
   const viewport = useViewport();
   const {drawerWidth} = props;
 
@@ -50,7 +50,7 @@ const SidePanel = props => {
       <Toolbar >
       </Toolbar>
       <Divider/>
-      <MenuList title={language.SidePanel.Subheaders.MainMenu} />
+      <MenuList title={t.SidePanel.Subheaders.MainMenu} />
     </Drawer>
   </ThemeProvider>
 }

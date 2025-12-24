@@ -9,8 +9,8 @@ import Box from "@mui/material/Box";
 // 1 - call the api to get user data with the accessToken
 // 2 - if no token, send request with /grantToken that looks at Refresh token in cookie
 // 3 - if again no token or the refresh is gone, just logout buddy
-export const AuthProvider = ({ children }) => {
-
+export const AuthProvider = (props) => {
+const { children, unauth } = props
   const [token, setToken] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
