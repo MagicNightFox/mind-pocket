@@ -3,22 +3,27 @@
   "Breadcrumbs": {
     "Personal": "Osobní",
     "Account": "Účet",
-    "Dashboard": "Nástěnka"
+    "Dashboard": "Nástěnka",
+    "About": "O aplikaci"
+  },
+  "Lang": {
+    "Czech": "Čeština",
+    "English": "Angličtina"
   },
   "AccountPage": {
     "Settings" : "Nastavení",
     "Language": "Jazyk",
-    "Czech": "Čeština",
-    "English": "Angličtina",
     "SavePrefs": "Uložit nastavení"
   },
   "LoginComponent": {
     "Login": "Přihlásit",
     "Username": "Přezdívka",
     "Password": "Heslo",
-    "RegisterPrompt": "Nemáte účet? Registrujte se!",
-    "LoginPrompt": "Máte účet? Přihlašte se!",
-    "Register": "Registrovat"
+    "RegisterPrompt": "Nemáte účet? \n Registrujte se!",
+    "LoginPrompt": "Máte účet? \n Přihlašte se!",
+    "Register": "Registrovat",
+    "LoginTitle": "Přihlašte se",
+    "RegisterTitle": "Zaregistrujte se"
   },
   "SidePanel": {
     "Subheaders": {

@@ -3,22 +3,27 @@
   "Breadcrumbs": {
     "Personal": "Personal",
     "Account": "Account",
-    "Dashboard": "Dashboard"
+    "Dashboard": "Dashboard",
+    "About": "About"
+  },
+  "Lang": {
+    "Czech": "Czech",
+    "English": "English"
   },
   "AccountPage": {
     "Settings" : "Settings",
     "Language": "Language",
-    "Czech": "Czech",
-    "English": "English",
     "SavePrefs": "Save preferences"
   },
   "LoginComponent": {
     "Login": "Login",
     "Username": "Username",
     "Password": "Password",
-    "RegisterPrompt": "Don't have an account? Create one!",
-    "LoginPrompt": "Already have an account? Log in!",
-    "Register": "Register"
+    "RegisterPrompt": "Don't have an account? \n Create one!",
+    "LoginPrompt": "Already have an account? \n Log in!",
+    "Register": "Register",
+    "LoginTitle": "Sign In",
+    "RegisterTitle": "Create an account"
   },
   "SidePanel": {
     "Subheaders": {

@@ -7,7 +7,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 
 const LanguageProvider = ({children}) => {
   const {user} = useAuth();
-  const [lang, setLang] = useState(user.preferences.language);
+  const [lang, setLang] = useState(user?.preferences?.language || "en");
 
   let DICTIONARY = {
     en, cs

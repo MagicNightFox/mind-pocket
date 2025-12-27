@@ -8,19 +8,21 @@ import {useState} from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ExpandMore from "@mui/icons-material/ExpandMore"
 import AccountContainer from "./account-container.jsx";
+import {useViewport} from "../../context/ViewportContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 const TopBar = (props) => {
-  const {breadcrumbList} = props;
+  const viewport = useViewport();
+  const {user} = useAuth();
+  const {breadcrumbList, menu, leftBar, rightBar} = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [mobileScreen, setMobileScreen] = useState(false);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   return (
     <Box sx={{ flexGrow: 1 }} >
       <Toolbar>
-        {mobileScreen && <IconButton
+        {menu && <IconButton
           size="large"
           edge="start"
           color="inherit"
@@ -34,14 +36,16 @@ const TopBar = (props) => {
         >
           <MenuIcon />
         </IconButton>}
-        <Breadcrumbs aria-label="breadcrumb" sx={{ flexGrow: 1 }}>
+        {leftBar}
+        {breadcrumbList && <Breadcrumbs aria-label="breadcrumb" sx={{ flexGrow: 1 }}>
           {breadcrumbList?.map((item, i) => (
             <Link key={i} underline="hover" color="inherit" href={item.link}>
               {i === breadcrumbList.length-1 ?  <Typography sx={{ color: 'text.primary' }}>{item.title}</Typography> : item.title }
             </Link>
           ))}
-        </Breadcrumbs>
-        <AccountContainer />
+        </Breadcrumbs>}
+        {rightBar}
+        {user && <AccountContainer />}
       </Toolbar>
       </Box>)
 }

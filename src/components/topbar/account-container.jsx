@@ -4,13 +4,14 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 import ExpandLess from "@mui/icons-material/ExpandLess"
 import Settings from "@mui/icons-material/Settings"
 import LogoutIcon from "@mui/icons-material/Logout";
-import {Link as ReactLink} from "react-router";
+import {Link as ReactLink, useNavigate} from "react-router";
 import {useState} from "react";
 import {useAuth} from "../../context/AuthContext.jsx";
 import PersonIcon from '@mui/icons-material/Person';
 import {useLang} from "../../lang/LanguageContext.jsx";
 
 const AccountContainer = (props) => {
+  const navigate = useNavigate()
   const {t} = useLang();
   const [accAncholEl, setAccAncholEl] = useState(null);
   const openAcc = Boolean(accAncholEl);
@@ -79,7 +80,10 @@ const AccountContainer = (props) => {
             </ListItemIcon>
           {t.AccountMenu.Settings}
         </MenuItem>
-        <MenuItem onClick={logout}>
+        <MenuItem onClick={() => {
+          navigate("/");
+          logout()
+        }}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>

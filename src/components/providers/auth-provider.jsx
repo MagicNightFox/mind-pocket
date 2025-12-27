@@ -1,4 +1,4 @@
-import {useEffect, useLayoutEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {AuthContext} from "../../context/AuthContext";
 import LoginPage from "../../routes/login-page.jsx";
 import {getMe, grantToken, loginUser, logoutUser} from "../../calls.js";
@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 // 2 - if no token, send request with /grantToken that looks at Refresh token in cookie
 // 3 - if again no token or the refresh is gone, just logout buddy
 export const AuthProvider = (props) => {
-const { children, unauth } = props
+const { children } = props
   const [token, setToken] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -79,10 +79,12 @@ const { children, unauth } = props
   }, [])
 
   const login = async (dtoIn) => {
-    const response = await loginUser(dtoIn);
-    console.log(response);
-    setToken(response.data.accessToken);
-    setUser(response.data.user);
+    let response = await loginUser(dtoIn);
+    if(!response.error){
+      setToken(response.data.accessToken);
+      setUser(response.data.user);
+    }
+    return response
   }
 
   const logout = async () => {
@@ -91,14 +93,12 @@ const { children, unauth } = props
     setUser(null);
   }
 
-  return <AuthContext.Provider value={{user, login, logout}}>
-    {!user
-      ? loading
-        ? <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
-            <CircularProgress/>
-          </Box>
-        : <LoginPage />
-      : children}
+  const value = useMemo(() => ({
+    user, loading, login, logout
+  }), [user, loading]);
+
+  return <AuthContext.Provider value={value}>
+    {children}
   </AuthContext.Provider>
 }
 

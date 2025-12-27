@@ -13,31 +13,50 @@ import AccountPage from "./routes/account/account-page.jsx";
 import PersonalDashboard from "./routes/personal-dashboard.jsx";
 import NotePocket from "./subapps/note-pocket/index.jsx";
 import {useViewport} from "./context/ViewportContext.jsx";
+import {useAuth} from "./context/AuthContext.jsx";
+import {CircularProgress} from "@mui/material";
+import PageNotFound from "./routes/page-not-found.jsx";
+import AboutApp from "./routes/about-app.jsx";
 
 function App() {
   const viewport = useViewport();
+  const {user, loading} = useAuth();
   const drawerWidth = viewport === "phone" ? 0 : 256;
-  return (
-      <BrowserRouter>
-        <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
-          <SidePanel drawerWidth={drawerWidth} />
-          <Box flexGrow={1} sx={{overflowX:"hidden"}} >
-            <Routes>
-              <Route path="/" element ={<PersonalDashboard />} />
-              <Route path="/characters" element ={<CharacterList />} />
-              <Route path="/character/:id" element ={<Character/>} />
-              <Route path="/fiction" element ={<Fiction/>} />
-              <Route path="/fiction/:id" element ={<FictionDetailPage />} />
-              <Route path="/profile" element ={<Profile/>} />
-              <Route path="/account" element ={<AccountPage />} />
-              <Route path="/recipes" element={<RecipePage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Routes>
-            <NotePocket/>
-          </Box>
-        </Box>
-      </BrowserRouter>
-  )
+
+  if(loading) {
+    return <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
+      <CircularProgress/>
+    </Box>
+  } else if(!user){
+    return <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/about" element={<AboutApp />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
+  }
+
+  return <BrowserRouter>
+    <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
+      <SidePanel drawerWidth={drawerWidth} />
+      <Box flexGrow={1} sx={{overflowX:"hidden"}} >
+        <Routes>
+          <Route path="/" element ={<PersonalDashboard />} />
+          <Route path="/characters" element ={<CharacterList />} />
+          <Route path="/character/:id" element ={<Character/>} />
+          <Route path="/fiction" element ={<Fiction/>} />
+          <Route path="/fiction/:id" element ={<FictionDetailPage />} />
+          <Route path="/profile" element ={<Profile/>} />
+          <Route path="/account" element ={<AccountPage />} />
+          <Route path="/recipes" element={<RecipePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <NotePocket/>
+      </Box>
+    </Box>
+  </BrowserRouter>
 }
 
 export default App

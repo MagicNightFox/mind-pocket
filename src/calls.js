@@ -1,14 +1,21 @@
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import {BASE_URI} from "./Constants.js";
 axios.defaults.withCredentials = true;
 async function register(dtoIn){
-  let data = await axios.post(`${BASE_URI}/user/register`, {
-    username: dtoIn.username, password: dtoIn.password
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
+  let data;
+  try {
+    data = await axios.post(`${BASE_URI}/user/register`, {
+      ...dtoIn
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (e) {
+    if(e instanceof AxiosError){
+      data = {error: e.response.data};
     }
-  })
+  }
   return data;
 }
 
@@ -38,13 +45,20 @@ async function grantToken() {
 }
 
 async function loginUser(dtoIn) {
-  let data = await axios.post(`${BASE_URI}/user/login`, {
-    username: dtoIn.username, password: dtoIn.password
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
+  let data;
+  try{
+    data = await axios.post(`${BASE_URI}/user/login`, {
+      username: dtoIn.username, password: dtoIn.password
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (e){
+    if(e instanceof AxiosError){
+      data = {error: e.response.data};
     }
-  })
+  }
   return data;
 }
 
