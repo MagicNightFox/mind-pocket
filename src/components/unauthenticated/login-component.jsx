@@ -10,7 +10,7 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 const LoginComponent = ({click}) => {
   const {login} = useAuth();
   const viewport = useViewport();
-  const {t} = useLang();
+  const {t, setLang} = useLang();
   const [error, setError] = useState(null);
   async function handleSubmit(event) {
     event.preventDefault();
@@ -19,6 +19,8 @@ const LoginComponent = ({click}) => {
     const result = await login(formJson);
     if(result.error){
       setError(result.error);
+    } else {
+      setLang(result.data.user.preferences.language);
     }
   }
 

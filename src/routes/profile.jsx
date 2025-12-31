@@ -1,9 +1,7 @@
 import {Card, Container, Grid} from "@mui/material";
 import TopBar from "../components/topbar/top-bar.jsx";
-import {useAuth} from "../context/AuthContext.jsx";
 
-const ProfilePage = props => {
-  const {user} = useAuth();
+const ProfilePage = () => {
 
   return <>
     <TopBar title="Profile"/>

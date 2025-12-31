@@ -8,10 +8,10 @@ import MenuList from "./menu-list.jsx";
 import {useLang} from "../../lang/LanguageContext.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
 
-const SidePanel = props => {
+const SidePanel = () => {
   const {t} = useLang()
   const viewport = useViewport();
-  const {drawerWidth} = props;
+  const drawerWidth = viewport === "phone" ? 0 : 256;
 
   const theme = createTheme({
     palette: {

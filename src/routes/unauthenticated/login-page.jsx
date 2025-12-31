@@ -1,10 +1,10 @@
 import {Container, Box} from "@mui/material";
-import LoginComponent from "../components/auth/login-component.jsx";
+import LoginComponent from "../../components/unauthenticated/login-component.jsx";
 import {useState} from "react";
-import RegisterComponent from "../components/auth/register-component.jsx";
-import UnauthTopBar from "../components/topbar/unauth-top-bar.jsx";
-const LoginPage = (props) => {
-  const [hasAccount, setHasAccount] = useState(props.login || false);
+import RegisterComponent from "../../components/unauthenticated/register-component.jsx";
+import UnauthTopBar from "../../components/unauthenticated/unauth-top-bar.jsx";
+const LoginPage = () => {
+  const [hasAccount, setHasAccount] = useState(true);
 return <Box>
     <UnauthTopBar />
     <Container maxWidth="100vw">

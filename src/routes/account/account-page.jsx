@@ -1,29 +1,12 @@
-import {Box, Container, Autocomplete, TextField, Tooltip} from "@mui/material";
+import {Box, Container, Autocomplete, TextField, Button} from "@mui/material";
 import TopBar from "../../components/topbar/top-bar.jsx";
-import Button from "@mui/material/Button";
 import {useAuth} from "../../context/AuthContext.jsx";
-import {SIDE_MENU_ITEMS} from "../../Constants.js";
 import {update} from "../../calls.js";
 import {useState} from "react";
 import {useLang} from "../../lang/LanguageContext.jsx";
-
-
-const MeniItemChooser = (userOptions, handleMenuItemChange) => {
-  return <Tooltip title="What displays in your menu - your data will remain!">
-    <Autocomplete
-      multiple
-      options={SIDE_MENU_ITEMS}
-      defaultValue={userOptions}
-      getOptionLabel={(option) => option.title}
-      renderInput={(params) => <TextField {...params} label="Menu items" />}
-      onChange={handleMenuItemChange}
-    />
-  </Tooltip>
-}
-
 const AccountPage = () => {
   const {user} = useAuth();
-  const {lang, setLang, t} = useLang();
+  const {setLang, t} = useLang();
 
   const breadcrumbs = [
     {link: "/", title: t.Breadcrumbs.Personal},
@@ -38,7 +21,6 @@ const AccountPage = () => {
   }
 
   const [userNewPrefs, setUserNewPrefs] = useState(user);
-  //let userOptions = SIDE_MENU_ITEMS.filter(item => user.subscribedSubAppsIdList.includes(item.id));
   async function handleSubmit() {
     setLang(userNewPrefs.language);
     await update({

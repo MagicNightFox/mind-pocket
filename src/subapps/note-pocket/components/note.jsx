@@ -1,8 +1,7 @@
-import {useState} from "react";
-import {Paper} from "@mui/material";
 import DOMPurify from 'dompurify';
+import {useState} from "react";
+import {Paper, Box} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import {NOTE_COLORS} from "../constants.js";
 const Note = (props) => {
@@ -16,7 +15,7 @@ const Note = (props) => {
     onMouseEnter={() => setElevation(3)}
     onMouseLeave={() => setElevation(1)}
     elevation={elevation}
-    sx={{bgcolor: NOTE_COLORS[data?.color] || "#FFFDCC",
+    sx={{bgcolor: NOTE_COLORS[data?.color] || NOTE_COLORS["yellow"],
       minWidth:"256px",
       maxWidth:"256px",
       cursor: "pointer",

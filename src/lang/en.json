@@ -39,6 +39,12 @@
     "Settings": "Settings",
     "LogOut": "Log out"
   },
+  "About":  {
+    "ReasonOfCreation": {
+      "title": "Why I created this app",
+      "content": "I started this project with my close friends and family in mind, as well as myself. \n I wanted to create something useful to me and others, so I thought about things and apps they usually use and tried to think of a way to make it easier for them to manage all they need. Most usually they used notes, todo-lists, shopping lists, communicated with their family about what to buy, if they have something at home or not → and usually what they used was just a basic chat and their phones' note app. \n\n So, I thought about creating something tethered to them, an app that would allow them to create notes that were shared across devices easily, todo-lists, possibly a schedule-manager, daily planner, household management with shopping lists and finances and whatnot."
+    }
+  },
   "SubApps": {
     "NotePocket": {
       "NotesWidget": {

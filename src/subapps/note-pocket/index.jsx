@@ -2,7 +2,7 @@ import Dashboard from "./routes/dashboard.jsx"
 import NoteListPage from "./routes/list.jsx"
 import {Route, Routes} from "react-router";
 
-const baseRoute = "NotePocket/"
+const baseRoute = "/NotePocket/"
 const NotePocket = () => {
 
   return <Routes>

@@ -1,10 +1,8 @@
+import axios from "axios";
 import {useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {AuthContext} from "../../context/AuthContext";
-import LoginPage from "../../routes/login-page.jsx";
 import {getMe, grantToken, loginUser, logoutUser} from "../../calls.js";
-import axios from "axios";
-import {CircularProgress} from "@mui/material";
-import Box from "@mui/material/Box";
+
 
 // 1 - call the api to get user data with the accessToken
 // 2 - if no token, send request with /grantToken that looks at Refresh token in cookie

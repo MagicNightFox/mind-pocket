@@ -10,7 +10,6 @@ const ViewportProvider = ({children}) => {
     if (isTabletUp) return "tablet";
     return "phone";
   }, [isPcUp, isTabletUp]);
-  console.log(viewport);
   return <ViewportContext.Provider value={viewport}>
     {children}
   </ViewportContext.Provider>

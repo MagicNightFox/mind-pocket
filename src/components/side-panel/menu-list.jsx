@@ -2,7 +2,6 @@ import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheade
 import {Link as ReactLink} from "react-router";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import BookIcon from '@mui/icons-material/Book';
-import Settings from "@mui/icons-material/Settings"
 import {useLang} from "../../lang/LanguageContext.jsx";
 
 const getIcon = (id) => {

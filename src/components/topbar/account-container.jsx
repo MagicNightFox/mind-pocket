@@ -1,16 +1,16 @@
+import {Link as ReactLink, useNavigate} from "react-router";
+import {useState} from "react";
+import {IconButton, Badge, Avatar, Box, Menu, MenuItem, ListItemIcon, Divider} from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import {IconButton, Badge, Avatar, Box, Menu, MenuItem, ListItemIcon, Divider, ListItemButton} from "@mui/material";
 import ExpandMore from "@mui/icons-material/ExpandMore"
 import ExpandLess from "@mui/icons-material/ExpandLess"
 import Settings from "@mui/icons-material/Settings"
 import LogoutIcon from "@mui/icons-material/Logout";
-import {Link as ReactLink, useNavigate} from "react-router";
-import {useState} from "react";
-import {useAuth} from "../../context/AuthContext.jsx";
 import PersonIcon from '@mui/icons-material/Person';
+import {useAuth} from "../../context/AuthContext.jsx";
 import {useLang} from "../../lang/LanguageContext.jsx";
 
-const AccountContainer = (props) => {
+const AccountContainer = () => {
   const navigate = useNavigate()
   const {t} = useLang();
   const [accAncholEl, setAccAncholEl] = useState(null);
@@ -65,7 +65,7 @@ const AccountContainer = (props) => {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-        <MenuItem component={ReactLink} to="/profile/">
+        <MenuItem component={ReactLink} to="/account">
             <Avatar /> {t.AccountMenu.MyProfile}
         </MenuItem>
         <Divider/>
@@ -74,7 +74,7 @@ const AccountContainer = (props) => {
             <PersonIcon/>
           </ListItemIcon> {t.AccountMenu.MyAccount}
         </MenuItem>
-        <MenuItem component={ReactLink} to="/account/settings">
+        <MenuItem component={ReactLink} to="/account">
             <ListItemIcon>
               <Settings />
             </ListItemIcon>

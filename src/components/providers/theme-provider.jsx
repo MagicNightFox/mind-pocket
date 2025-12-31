@@ -1,24 +1,29 @@
-import {createContext} from "react";
 import {useAuth} from "../../context/AuthContext.jsx";
-const LIGHT_THEME = {
-  primaryColor: "#FFFFFF",
-  secondaryColor: "#FFFFFF",
-  sidePanelColor: "#FFFFFF",
+import {CustomThemeContext} from "../../context/CustomThemeContext.jsx";
+import {useMemo, useState} from "react";
+
+const themes = {
+  light: {
+    primaryColor: "#FFFFFF",
+    secondaryColor: "#FFFFFF",
+    sidePanelColor: "#FFFFFF",
+  },
+  dark: {
+    primaryColor: "#FFFFFF",
+    secondaryColor: "#FFFFFF",
+    sidePanelBackgroundColor: "#252525",
+  }
 }
-
-const DARK_THEME = {
-  primaryColor: "#FFFFFF",
-  secondaryColor: "#FFFFFF",
-  sidePanelBackgroundColor: "#252525",
-}
-
-
-const ThemeProvider = (props) => {
+const CustomThemeProvider = ({children}) => {
   const {user} = useAuth()
-  const {children} = props;
-  const theme= user.userData?.preferences?.theme === "light" ? LIGHT_THEME : DARK_THEME;
-  return <>
-  </>
+  const [theme, setTheme] = useState(themes[user?.preferences?.theme] || themes["light"]);
+  const value = useMemo(() => ({
+    theme, setTheme
+  }),[theme]);
+
+  return <CustomThemeContext.Provider value={value}>
+    {children}
+  </CustomThemeContext.Provider>
 }
 
-export default ThemeProvider;
+export default CustomThemeProvider;

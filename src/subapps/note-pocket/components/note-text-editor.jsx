@@ -69,17 +69,21 @@ const NoteTextEditor = (props) => {
   return (
     <Box display="flex" height="100%" flexDirection="column" gap="8px">
       <Box display="flex" flexDirection="row" gap="8px" >
-        <Box bgcolor={bold ? "rgba(42,43,50,0.25)" : "transparent"}>
+        <Box borderRadius="32px" bgcolor={bold ? "rgba(42,43,50,0.25)" : "transparent"}>
           <IconButton variant="text" onClick={applyBold} >
             <FormatBoldIcon fontSize="small"  sx={{color: "#252525"}}/>
           </IconButton>
         </Box>
-        <IconButton variant="text" onClick={applyItalic}>
-          <FormatItalicIcon fontSize="small" sx={{color: "#252525"}}/>
-        </IconButton>
-        <IconButton variant="text" onClick={applyUnderline}>
-          <FormatUnderlinedIcon fontSize="small" sx={{color: "#252525"}}/>
-        </IconButton>
+        <Box borderRadius="32px" bgcolor={italic ? "rgba(42,43,50,0.25)" : "transparent"}>
+          <IconButton variant="text" onClick={applyItalic}>
+            <FormatItalicIcon fontSize="small" sx={{color: "#252525"}}/>
+          </IconButton>
+        </Box>
+        <Box borderRadius="32px" bgcolor={underline ? "rgba(42,43,50,0.25)" : "transparent"}>
+          <IconButton variant="text" onClick={applyUnderline}>
+            <FormatUnderlinedIcon fontSize="small" sx={{color: "#252525"}}/>
+          </IconButton>
+        </Box>
       </Box>
 
       <Divider color="#252525" />

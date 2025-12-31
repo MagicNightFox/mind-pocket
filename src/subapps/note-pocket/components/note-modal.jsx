@@ -1,6 +1,6 @@
+import {useState} from "react";
 import {Box,Modal} from "@mui/material";
 import NoteTextEditor from "./note-text-editor.jsx";
-import {useEffect, useState} from "react";
 import {NOTE_COLORS} from "../constants.js";
 import {useViewport} from "../../../context/ViewportContext.jsx";
 
@@ -20,9 +20,11 @@ const NoteModal = (props) => {
   const [color, setColor] = useState(null);
   const viewport = useViewport();
 
-  const setNoteColor = (clickedColor) => {
-    setColor(clickedColor);
+  const handleSubmit = (submittedNoteData) => {
+    onSubmit({content: submittedNoteData, color: color || "yellow"})
+    setColor(null);
   }
+
   return <Modal
     open={open}
     onClose={(e) => {
@@ -36,14 +38,10 @@ const NoteModal = (props) => {
           <Box bgcolor={value} key={key} width="16px" height="16px"
                border={color === key ? "1px solid black" : null}
                sx={{cursor: 'pointer'}}
-               onClick={() => setNoteColor(key)}/>
+               onClick={() => setColor(key)}/>
         ))}
       </Box>
-      <NoteTextEditor defaultValue={data && data.content} onSubmit={(submittedData) => {
-        if(!color) setColor("yellow");
-        onSubmit({content: submittedData, color})
-        setColor(null);
-      }}/>
+      <NoteTextEditor defaultValue={data && data.content} onSubmit={handleSubmit}/>
     </Box>
   </Modal>
 }

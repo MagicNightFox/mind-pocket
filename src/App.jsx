@@ -1,27 +1,18 @@
 import './App.css'
+import {lazy} from "react"
 import {BrowserRouter, Route, Routes} from "react-router";
-import Box from "@mui/material/Box";
-import Character from "./subapps/fic-pocket/character.jsx";
-import Fiction from "./subapps/fic-pocket/fiction.jsx";
-import FictionDetailPage from "./subapps/fic-pocket/fiction-detail.jsx";
-import Profile from "./routes/profile.jsx";
-import RecipePage from "./subapps/cook-pocket/recipes.jsx";
-import LoginPage from "./routes/login-page.jsx";
 import SidePanel from "./components/side-panel/side-panel.jsx";
-import CharacterList from "./subapps/fic-pocket/character/list.jsx";
-import AccountPage from "./routes/account/account-page.jsx";
-import PersonalDashboard from "./routes/personal-dashboard.jsx";
-import NotePocket from "./subapps/note-pocket/index.jsx";
-import {useViewport} from "./context/ViewportContext.jsx";
 import {useAuth} from "./context/AuthContext.jsx";
-import {CircularProgress} from "@mui/material";
-import PageNotFound from "./routes/page-not-found.jsx";
-import AboutApp from "./routes/about-app.jsx";
+import {CircularProgress, Box} from "@mui/material";
 
+const LoginPage = lazy(() => import("./routes/unauthenticated/login-page.jsx"));
+const AccountPage = lazy(() => import("./routes/account/account-page.jsx"));
+const PersonalDashboardPage = lazy(() => import("./routes/personal-dashboard.jsx"));
+const AboutUnAuthPage = lazy(() => import("./routes/unauthenticated/about-app.jsx"));
+const AboutAuthPage = lazy(() => import("./routes/about.jsx"));
+const PageNotFound = lazy(() => import("./routes/page-not-found.jsx"))
 function App() {
-  const viewport = useViewport();
   const {user, loading} = useAuth();
-  const drawerWidth = viewport === "phone" ? 0 : 256;
 
   if(loading) {
     return <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
@@ -31,7 +22,7 @@ function App() {
     return <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/about" element={<AboutApp />} />
+        <Route path="/about" element={<AboutUnAuthPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
@@ -39,21 +30,14 @@ function App() {
 
   return <BrowserRouter>
     <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
-      <SidePanel drawerWidth={drawerWidth} />
+      <SidePanel/>
       <Box flexGrow={1} sx={{overflowX:"hidden"}} >
         <Routes>
-          <Route path="/" element ={<PersonalDashboard />} />
-          <Route path="/characters" element ={<CharacterList />} />
-          <Route path="/character/:id" element ={<Character/>} />
-          <Route path="/fiction" element ={<Fiction/>} />
-          <Route path="/fiction/:id" element ={<FictionDetailPage />} />
-          <Route path="/profile" element ={<Profile/>} />
+          <Route path="/" element ={<PersonalDashboardPage />} />
+          <Route path="/about" element={<AboutAuthPage />} />
           <Route path="/account" element ={<AccountPage />} />
-          <Route path="/recipes" element={<RecipePage />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        <NotePocket/>
       </Box>
     </Box>
   </BrowserRouter>
