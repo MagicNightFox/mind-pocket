@@ -4,7 +4,7 @@ import {Divider} from "@mui/material";
 
 
 const Widget = (props) => {
-  const {children, title, actionBar} = props;
+  const {children, title, actionbar} = props;
   return <Box
     bgcolor="white"
     borderRadius="16px"
@@ -16,10 +16,10 @@ const Widget = (props) => {
     maxWidth="100%"
     {...props}
   >
-    {(title || actionBar) && (<Box>
+    {(title || actionbar) && (<Box>
       <Box display="flex" flexDirection="row" alignItems="center" >
         {title && <Typography>{title}</Typography>}
-        {actionBar}
+        {actionbar && actionbar}
       </Box>
       <Divider />
     </Box>)}

@@ -1,14 +1,13 @@
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import IconButton from "@mui/material/IconButton";
-import {CircularProgress, Box} from "@mui/material";
+import {CircularProgress, Box, Button} from "@mui/material";
 import {useState} from "react";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {createNote, deleteNote, listNotes, updateNote} from "../calls.js";
 import Widget from "../../../components/widget.jsx"
 import Note from "../components/note.jsx"
 import NoteModal from "../components/note-modal.jsx";
-import Button from "@mui/material/Button";
 import {useLang} from "../../../lang/LanguageContext.jsx";
 
 const NotesWidget = () => {
@@ -65,7 +64,7 @@ const NotesWidget = () => {
     return (new Date(b.updatedAt) - new Date(a.updatedAt))
   }).slice(0,10);
 
-  return <Widget title={t.SubApps.NotePocket.NotesWidget.Notes} flexGrow={1} actionBar={
+  return <Widget title={t.SubApps.NotePocket.NotesWidget.Notes} flexGrow={1} actionbar={
     <IconButton size="small" onClick={() => {
       setSelectedNote(null);
       setOpenModal(true)

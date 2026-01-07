@@ -1,3 +1,4 @@
+import {Link} from "react-router"
 import {
   Divider,
   Drawer,
@@ -7,7 +8,7 @@ import {
 import MenuList from "./menu-list.jsx";
 import {useLang} from "../../lang/LanguageContext.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
-
+import LogoComponent from "../logo-component.jsx";
 const SidePanel = () => {
   const {t} = useLang()
   const viewport = useViewport();
@@ -47,7 +48,8 @@ const SidePanel = () => {
         boxSizing: 'border-box',
       },
     }}>
-      <Toolbar >
+      <Toolbar>
+      <LogoComponent component={Link} to="/about" width="100%" justifyContent="center" sx={{textDecoration:"none"}} />
       </Toolbar>
       <Divider/>
       <MenuList title={t.SidePanel.Subheaders.MainMenu} />

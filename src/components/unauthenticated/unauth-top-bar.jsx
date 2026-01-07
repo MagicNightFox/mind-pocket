@@ -4,7 +4,8 @@ import {Box, ListItemButton, MenuItem, Menu, Select, IconButton} from "@mui/mate
 import MenuIcon from "@mui/icons-material/Menu";
 import {useViewport} from "../../context/ViewportContext.jsx";
 import {useLang} from "../../lang/LanguageContext.jsx";
-import logo from "../../assets/logo/mp-logo.png";
+import LogoComponent from "../logo-component.jsx";
+
 const UnauthTopBar = () => {
   const viewport = useViewport();
   const {t, setLang, lang} = useLang();
@@ -19,7 +20,7 @@ const UnauthTopBar = () => {
   }
   return <Box display="flex" padding="16px">
     <Box flexGrow={1}>
-      <img style={{maxHeight: "48px"}} src={logo} alt="MindPocket"/>
+      <LogoComponent />
     </Box>
     <Box display="flex" gap="8px">
       <Select variant="standard" value={lang} onChange={(event) => setLang(event.target.value)}>

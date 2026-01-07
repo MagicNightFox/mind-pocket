@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router";
 import SidePanel from "./components/side-panel/side-panel.jsx";
 import {useAuth} from "./context/AuthContext.jsx";
 import {CircularProgress, Box} from "@mui/material";
+import CopyrightComponent from "./components/copyright-component.jsx";
 
 const LoginPage = lazy(() => import("./routes/unauthenticated/login-page.jsx"));
 const AccountPage = lazy(() => import("./routes/account/account-page.jsx"));
@@ -25,19 +26,21 @@ function App() {
         <Route path="/about" element={<AboutUnAuthPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <CopyrightComponent />
     </BrowserRouter>
   }
 
   return <BrowserRouter>
     <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
       <SidePanel/>
-      <Box flexGrow={1} sx={{overflowX:"hidden"}} >
+      <Box flexGrow={1} sx={{overflowX:"hidden"}} position="relative">
         <Routes>
           <Route path="/" element ={<PersonalDashboardPage />} />
           <Route path="/about" element={<AboutAuthPage />} />
           <Route path="/account" element ={<AccountPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <CopyrightComponent/>
       </Box>
     </Box>
   </BrowserRouter>
