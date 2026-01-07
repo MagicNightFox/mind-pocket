@@ -1,0 +1,60 @@
+{
+  "AppName": "MindPocket",
+  "Breadcrumbs": {
+    "Personal": "Personal",
+    "Account": "Account",
+    "Dashboard": "Dashboard",
+    "About": "About",
+    "Browse": "Browse"
+  },
+  "Lang": {
+    "Czech": "Czech",
+    "English": "English"
+  },
+  "AccountPage": {
+    "Settings" : "Settings",
+    "Language": "Language",
+    "SavePrefs": "Save preferences"
+  },
+  "LoginComponent": {
+    "Login": "Login",
+    "Username": "Username",
+    "Password": "Password",
+    "RegisterPrompt": "Don't have an account? \n Create one!",
+    "LoginPrompt": "Already have an account? \n Log in!",
+    "Register": "Register",
+    "LoginTitle": "Sign In",
+    "RegisterTitle": "Create an account"
+  },
+  "SidePanel": {
+    "Subheaders": {
+      "MainMenu": "Main menu"
+    },
+    "Items": {
+      "Dashboard": "Dashboard"
+    }
+  },
+  "AccountMenu":  {
+    "MyProfile": "My Profile",
+    "MyAccount": "My Account",
+    "Settings": "Settings",
+    "LogOut": "Log out"
+  },
+  "About":  {
+    "ReasonOfCreation": {
+      "title": "Why I created this app",
+      "content": "I started this project with my close friends and family in mind, as well as myself. \n I wanted to create something useful to me and others, so I thought about things and apps they usually use and tried to think of a way to make it easier for them to manage all they need. Most usually they used notes, todo-lists, shopping lists, communicated with their family about what to buy, if they have something at home or not → and usually what they used was just a basic chat and their phones' note app. \n\n So, I thought about creating something tethered to them, an app that would allow them to create notes that were shared across devices easily, todo-lists, possibly a schedule-manager, daily planner, household management with shopping lists and finances and whatnot."
+    }
+  },
+  "SubApps": {
+    "NotePocket": {
+      "NotesWidget": {
+        "Notes": "Notes",
+        "SeeMore": "See more"
+      },
+      "NoteModal": {
+        "Save": "Save"
+      }
+    }
+  }
+}

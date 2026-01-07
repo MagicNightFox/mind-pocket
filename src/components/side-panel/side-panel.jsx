@@ -1,0 +1,60 @@
+import {Link} from "react-router"
+import {
+  Divider,
+  Drawer,
+  Toolbar,
+  createTheme, ThemeProvider
+} from "@mui/material";
+import MenuList from "./menu-list.jsx";
+import {useLang} from "../../lang/LanguageContext.jsx";
+import {useViewport} from "../../context/ViewportContext.jsx";
+import LogoComponent from "../logo-component.jsx";
+const SidePanel = () => {
+  const {t} = useLang()
+  const viewport = useViewport();
+  const drawerWidth = viewport === "phone" ? 0 : 256;
+
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+      background: {
+        default: "#FAFAFA",
+        paper: "#252525",
+        active: "#444344"
+      },
+    },
+    components: {
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            variants: [{
+              props: { variant: "active"},
+              style: {
+                background: "#444344"
+              }
+            }],
+          }
+        }
+      }
+    }
+  })
+
+  return <ThemeProvider theme={theme}>
+    <Drawer anchor="left" variant="persistent" open={viewport !== "phone"} sx={{
+      width: drawerWidth,
+      flexShrink: 0,
+      '& .MuiDrawer-paper': {
+        width: drawerWidth,
+        boxSizing: 'border-box',
+      },
+    }}>
+      <Toolbar>
+      <LogoComponent component={Link} to="/about" width="100%" justifyContent="center" sx={{textDecoration:"none"}} />
+      </Toolbar>
+      <Divider/>
+      <MenuList title={t.SidePanel.Subheaders.MainMenu} />
+    </Drawer>
+  </ThemeProvider>
+}
+
+export default SidePanel;

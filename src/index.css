@@ -1,0 +1,21 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: only light;
+  color: rgb(37, 37, 37);
+  background-color: #FAFAFA;
+}
+
+body {
+  margin: 0;
+    background-color: #FAFAFA;
+    min-height: 100vh;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #252525;
+    background-color: #FAFAFA;
+  }
+}
+

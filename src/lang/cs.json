@@ -1,0 +1,60 @@
+{
+  "AppName": "MindPocket",
+  "Breadcrumbs": {
+    "Personal": "Osobní",
+    "Account": "Účet",
+    "Dashboard": "Nástěnka",
+    "About": "O aplikaci",
+    "Browse": "Browse"
+  },
+  "Lang": {
+    "Czech": "Čeština",
+    "English": "Angličtina"
+  },
+  "AccountPage": {
+    "Settings" : "Nastavení",
+    "Language": "Jazyk",
+    "SavePrefs": "Uložit nastavení"
+  },
+  "LoginComponent": {
+    "Login": "Přihlásit",
+    "Username": "Přezdívka",
+    "Password": "Heslo",
+    "RegisterPrompt": "Nemáte účet? \n Registrujte se!",
+    "LoginPrompt": "Máte účet? \n Přihlašte se!",
+    "Register": "Registrovat",
+    "LoginTitle": "Přihlašte se",
+    "RegisterTitle": "Zaregistrujte se"
+  },
+  "SidePanel": {
+    "Subheaders": {
+      "MainMenu": "Hlavní nabídka"
+    },
+    "Items": {
+      "Dashboard": "Nástěnka"
+    }
+  },
+  "AccountMenu":  {
+    "MyProfile": "Profil",
+    "MyAccount": "Účet",
+    "Settings": "Nastavení",
+    "LogOut": "Odhlásit"
+  },
+  "About":  {
+    "ReasonOfCreation": {
+      "title": "Proč tuhle aplikaci?",
+      "content": "Tento projekt jsem začala se svými blízkými na mysli, co by mohli potřebovat a nebo co by se jim mohlo hodit - a zároveň i mně. \n Chtěla jsem vytvořit něco užitečného pro mě i pro ostatní, tak jsem se zamyslela nad věcmi do dělají a jaké aplikace nebo weby většinou používají a zapřemýšlela jsem se nad tím jak bych jim mohla usnadnit uspořádávání všeho možného. Nejčastěji využívali poznámky, to-do listy, seznam na nákup, komunikovali vše smezi sebou když někdo něco potřeboval, jestli jim doma něco nechybí -> a nejčastěji na všechno používali jen základní aplikaci na poznámky co měli v mobilu. \n\n Tak jsem se zamyslela nad vytvořením něčeho co by jim umožnilo všechny tyhle informace mít na jednom místě s přístupem z vícero zařízení."
+    }
+  },
+  "SubApps": {
+    "NotePocket": {
+      "NotesWidget": {
+        "Notes": "Poznámky",
+        "SeeMore": "Zobrazit vše"
+      },
+      "NoteModal": {
+        "Save": "Uložit"
+      }
+    }
+  }
+}
