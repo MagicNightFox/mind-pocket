@@ -19,6 +19,8 @@ const { children } = props
         // this fetches the user - if he refreshed or simply was gone for more than the expiration of access
         // token, token is set to null
         const response = await getMe();
+
+        console.log("here");
         setToken(response.data.accessToken);
         setUser(response.data.user);
         setLoading(false)

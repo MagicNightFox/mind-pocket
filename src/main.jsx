@@ -10,6 +10,7 @@ import LanguageProvider from "./components/providers/language-provider.jsx";
 import ViewportProvider from "./components/providers/viewport-provider.jsx";
 import {CookiesProvider} from "react-cookie";
 import CustomThemeProvider from "./components/providers/theme-provider.jsx";
+import TimeFrameProvider from "./components/providers/timeframe-provider.jsx";
 
 const queryClient = new QueryClient();
 
@@ -21,9 +22,11 @@ createRoot(document.getElementById('root')).render(
           <AuthProvider>
             <LanguageProvider>
               <CustomThemeProvider>
-                <QueryClientProvider client={queryClient}>
-                  <App />
-                </QueryClientProvider>
+                <TimeFrameProvider>
+                  <QueryClientProvider client={queryClient}>
+                    <App />
+                  </QueryClientProvider>
+                </TimeFrameProvider>
               </CustomThemeProvider>
             </LanguageProvider>
           </AuthProvider>

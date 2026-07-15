@@ -89,7 +89,6 @@ const Fiction = () => {
 
   return (
     <>
-      <TopBar title="Reading Nook"/>
       <Container maxWidth="lg">
         <Button variant="contained" color="primary" onClick={handleClickOpen}>Read a fic lol</Button>
         <Dialog open={open} onClose={handleClose}>

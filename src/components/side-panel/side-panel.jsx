@@ -3,36 +3,73 @@ import {
   Divider,
   Drawer,
   Toolbar,
-  createTheme, ThemeProvider
+  createTheme, ThemeProvider, Typography
 } from "@mui/material";
 import MenuList from "./menu-list.jsx";
-import {useLang} from "../../lang/LanguageContext.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
-import LogoComponent from "../logo-component.jsx";
 const SidePanel = () => {
-  const {t} = useLang()
   const viewport = useViewport();
   const drawerWidth = viewport === "phone" ? 0 : 256;
 
   const theme = createTheme({
     palette: {
-      mode: "dark",
+      mode: "light",
       background: {
         default: "#FAFAFA",
-        paper: "#252525",
-        active: "#444344"
+        paper: "#fdfdfd",
       },
     },
     components: {
       MuiListItemButton: {
         styleOverrides: {
           root: {
+            height: "32px",
             variants: [{
               props: { variant: "active"},
               style: {
-                background: "#444344"
+                background: "#e6e6e6"
               }
             }],
+          }
+        }
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          primary: {
+            fontFamily: "Intel One Mono",
+            color: "#50506c"
+          }
+        }
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            minWidth: "32px",
+            fontSize: "20px"
+          }
+        }
+      },
+      MuiListItem: {
+        styleOverrides: {
+          gutters: {
+            padding: 0,
+            margin: "0 0 4px 0"
+          }
+        }
+      },
+      MuiListItemSecondaryAction: {
+        styleOverrides: {
+          root: {
+            top: "15px",
+            color: "rgb(80 80 108 / 0.75)"
+          }
+        }
+      },
+      MuiListSubheader: {
+        styleOverrides: {
+          root: {
+            fontFamily: "Intel One Mono",
+            fontWeight: "lighter",
           }
         }
       }
@@ -46,13 +83,13 @@ const SidePanel = () => {
       '& .MuiDrawer-paper': {
         width: drawerWidth,
         boxSizing: 'border-box',
-      },
+      }
     }}>
       <Toolbar>
-      <LogoComponent component={Link} to="/about" width="100%" justifyContent="center" sx={{textDecoration:"none"}} />
+        <Typography component="h1" variant="h6" fontFamily="Intel One Mono">Workspace</Typography>
       </Toolbar>
       <Divider/>
-      <MenuList title={t.SidePanel.Subheaders.MainMenu} />
+      <MenuList />
     </Drawer>
   </ThemeProvider>
 }

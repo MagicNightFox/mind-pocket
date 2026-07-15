@@ -2,7 +2,7 @@ export const SUBAPPS = {
   ficPocket: {
     label: "FicPocket",
     route: "/ficPocket",
-    loader: () => import("./fic-pocket/import.jsx")
+    RouteLoader: () => import("./fic-pocket/import.jsx")
   },
   cookPocket: {
     label: "CookPocket",
@@ -13,8 +13,4 @@ export const SUBAPPS = {
     label: "GamePocket",
     loader: () => import("./game-pocket/import.jsx"),
   },
-  notePocket: {
-    label: "NotePocket",
-    loader: () => import("./note-pocket/index.jsx"),
-  }
 };

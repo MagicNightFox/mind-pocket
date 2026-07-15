@@ -11,10 +11,15 @@ const AccountPage = lazy(() => import("./routes/account/account-page.jsx"));
 const PersonalDashboardPage = lazy(() => import("./routes/personal-dashboard.jsx"));
 const AboutUnAuthPage = lazy(() => import("./routes/unauthenticated/about-app.jsx"));
 const AboutAuthPage = lazy(() => import("./routes/about.jsx"));
+const SchedulePage = lazy(() => import("./routes/schedule-route.jsx"));
 const PageNotFound = lazy(() => import("./routes/page-not-found.jsx"))
+const FictionListPage = lazy(() => import("./routes/fiction/fiction-list-route.jsx"));
+const CharacterListPage = lazy(() => import("./routes/character/character-list-route.jsx"));
+const CharacterDetailPage = lazy(() => import("./routes/character/character-detail-route.jsx"));
+const NotesDashboardPage = lazy(() => import("./routes/notes/dashboard.jsx"));
+
 function App() {
   const {user, loading} = useAuth();
-
   if(loading) {
     return <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
       <CircularProgress/>
@@ -35,9 +40,33 @@ function App() {
       <SidePanel/>
       <Box flexGrow={1} sx={{overflowX:"hidden"}} position="relative">
         <Routes>
+          {/* General Routes */}
           <Route path="/" element ={<PersonalDashboardPage />} />
           <Route path="/about" element={<AboutAuthPage />} />
           <Route path="/account" element ={<AccountPage />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="/notes" element={<NotesDashboardPage />} />
+
+          {/* Fiction Feature Routes (Nested) */}
+          <Route path="/fiction">
+            <Route index element={<FictionListPage />} />
+            <Route path="list" element={<FictionListPage />} />
+            <Route path="simp-list" element={<CharacterListPage />} />
+            <Route path=":fictionId" element={<SchedulePage />} />
+            <Route path="character">
+              <Route path="list" element={<CharacterListPage />} />
+              <Route path=":characterId" element={<CharacterDetailPage />} />
+            </Route>
+            <Route path="*" element={<SchedulePage />} />
+          </Route>
+
+          {/* Gaming Feature Routes (Nested) */}
+          <Route path="/gaming">
+            <Route index element={<SchedulePage />} />
+            <Route path="*" element={<SchedulePage />} />
+          </Route>
+
+          {/* Catch-all for 404s */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <CopyrightComponent/>

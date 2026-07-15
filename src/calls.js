@@ -1,5 +1,5 @@
 import axios, {AxiosError} from "axios";
-import {BASE_URI} from "./Constants.js";
+import {LOCAL_BASE_URI as BASE_URI} from "./Constants.js";
 axios.defaults.withCredentials = true;
 async function register(dtoIn){
   let data;
@@ -26,7 +26,7 @@ async function listCharacters() {
 }
 
 async function getCharacter(id) {
-  let response = await axios.get(`${BASE_URI}/character?id=${id}`);
+  let response = await axios.get(`${BASE_URI}/character/get?id=${id}`);
   return response;
 }
 
@@ -35,7 +35,9 @@ async function createCharacter() {
 }
 
 async function getMe() {
+
   let data = await axios.get(`${BASE_URI}/user/getMe`);
+
   return data;
 }
 

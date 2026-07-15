@@ -58,7 +58,7 @@ const CharacterDataList = () => {
           }}
           pageSizeOptions={[5, 10, 20]}
           onRowClick={(params) => {
-            navigate("/character/" + params.id);
+            navigate("/fiction/character/" + params.id);
           }}
           disableRowSelectionOnClick
           showToolbar

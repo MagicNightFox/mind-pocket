@@ -1,43 +1,82 @@
-import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader} from "@mui/material";
-import {Link as ReactLink} from "react-router";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import BookIcon from '@mui/icons-material/Book';
-import {useLang} from "../../lang/LanguageContext.jsx";
-
-const getIcon = (id) => {
-  switch(id) {
-    case "goonCave": return <BookIcon />;
-    case "fictionArchive": return <BookIcon />;
-    default: return <DashboardIcon />
-  }
-}
-const MenuList = (props) => {
-  const {title, itemsToRender} = props;
-  const {t} = useLang();
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader
+} from "@mui/material";
+import {Link as ReactLink, useLocation} from "react-router";
+import {useState} from "react";
+import {Add, SummarizeOutlined, Apps, ArticleOutlined, AllInbox, AutoStoriesOutlined, RestaurantMenuOutlined} from "@mui/icons-material";
+import NoteCreateModal from "../notes/note-create-modal.jsx";
+const MenuList = () => {
+  const location = useLocation();
+  const [hoverNotes, setHoverNotes] = useState(false);
+  const [openNoteModal, setOpenNoteModal] = useState(false);
   return <>
     <List
       subheader={
         <ListSubheader component="div" sx={{bgcolor: "inherit"}}>
-          {title}
+          Personal
         </ListSubheader>
       }
       dense
     >
       <ListItem>
-        <ListItemButton variant={location.pathname === "/" && "active"} component={ReactLink} to={"/"} sx={{borderRadius:"8px", height: "48px" }} >
-          <ListItemIcon> <DashboardIcon /> </ListItemIcon>
-          <ListItemText primary={t.Breadcrumbs.Dashboard}/>
+        <ListItemButton variant={location.pathname === "/" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <Apps fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Dashboard"/>
         </ListItemButton>
       </ListItem>
-      {itemsToRender?.map((item, index) => (
-        <ListItem key={index}>
-          <ListItemButton variant={location.pathname === item.url && "active"} component={ReactLink} to={item.url} sx={{borderRadius:"8px", height: "48px" }} >
-            <ListItemIcon> {getIcon(item.id)} </ListItemIcon>
-            <ListItemText primary={item.title}/>
-          </ListItemButton>
-        </ListItem>
-      ))}
+      <ListItem  secondaryAction={(hoverNotes || location.pathname === "/notes") && <IconButton sx={{padding:0, color: "inherit"}} onClick={()=> setOpenNoteModal(true)}><Add sx={{fontSize:"21px"}}/></IconButton>}
+                 onMouseEnter={()=> setHoverNotes(true)}
+                 onMouseLeave={()=> setHoverNotes(false)}>
+        <ListItemButton variant={location.pathname === "/notes" && "active"} component={ReactLink} to={"/notes"}>
+          <ListItemIcon> <SummarizeOutlined fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Notes"/>
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton variant={location.pathname === "/journal" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <AutoStoriesOutlined fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Journal"/>
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton variant={location.pathname === "/shifting" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <Apps fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Shifting"/>
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton variant={location.pathname === "/fiction" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <ArticleOutlined fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Fiction"/>
+        </ListItemButton>
+      </ListItem>
     </List>
+    <List subheader={
+      <ListSubheader component="div" sx={{bgcolor: "inherit"}}>
+        Household
+      </ListSubheader>
+    }
+          dense>
+      <ListItem>
+        <ListItemButton variant={location.pathname === "/fiction" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <AllInbox fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Inventory"/>
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton variant={location.pathname === "/fiction" && "active"} component={ReactLink} to={"/"}>
+          <ListItemIcon> <RestaurantMenuOutlined fontSize="inherit"/> </ListItemIcon>
+          <ListItemText primary="Recipes"/>
+        </ListItemButton>
+      </ListItem>
+    </List>
+    <NoteCreateModal open={openNoteModal} onClose={()=> setOpenNoteModal(false)}/>
   </>
 }
 
