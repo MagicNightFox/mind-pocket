@@ -3,7 +3,7 @@ import TopBar from "../../components/topbar/top-bar.jsx";
 
 const HouseholdDashboard = () => {
   return <Box>
-    <TopBar title="Goon Cave"/>
+    <TopBar title="Household"/>
   </Box>
 }
 

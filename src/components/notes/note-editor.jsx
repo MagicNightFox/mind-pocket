@@ -8,6 +8,7 @@ const NoteEditor = () => {
         content: '<p>Example Text</p>',
         extensions: [StarterKit],
     })
+
     return (
         <>
             <MenuBar editor={noteEditor} />

@@ -8,11 +8,9 @@ import Settings from "@mui/icons-material/Settings"
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from '@mui/icons-material/Person';
 import {useAuth} from "../../context/AuthContext.jsx";
-import {useLang} from "../../lang/LanguageContext.jsx";
 
 const AccountContainer = () => {
   const navigate = useNavigate()
-  const {t} = useLang();
   const [accAncholEl, setAccAncholEl] = useState(null);
   const openAcc = Boolean(accAncholEl);
   const {logout} = useAuth()
@@ -66,19 +64,19 @@ const AccountContainer = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
         <MenuItem component={ReactLink} to="/account">
-            <Avatar /> {t.AccountMenu.MyProfile}
+            <Avatar /> My Profile
         </MenuItem>
         <Divider/>
         <MenuItem component={ReactLink} to="/account">
           <ListItemIcon>
             <PersonIcon/>
-          </ListItemIcon> {t.AccountMenu.MyAccount}
+          </ListItemIcon> My Account
         </MenuItem>
         <MenuItem component={ReactLink} to="/account">
             <ListItemIcon>
               <Settings />
             </ListItemIcon>
-          {t.AccountMenu.Settings}
+          Settings
         </MenuItem>
         <MenuItem onClick={() => {
           navigate("/");
@@ -87,7 +85,7 @@ const AccountContainer = () => {
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
-          {t.AccountMenu.LogOut}
+          Logout
         </MenuItem>
   </Menu>
 </Box>

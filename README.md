@@ -4,3 +4,7 @@ Project created for family and friends as a small scaled app for management and 
 - instal dependencies with //npm install first
 - change target url to the local server running the backend
 - run the web app
+
+
+tailscale funnel 5173
+-- change vite config proxy

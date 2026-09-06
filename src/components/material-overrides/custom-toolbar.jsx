@@ -53,8 +53,7 @@ const StyledTextField = styled(TextField)(({ theme, ownerState }) => ({
 }));
 
 function CustomToolbar(props) {
-  const {redirect, title} = props
-  const navigate = useNavigate();
+  const {onClick, title} = props
   const [exportMenuOpen, setExportMenuOpen] = React.useState(false);
   const exportMenuTriggerRef = React.useRef(null);
 
@@ -63,10 +62,10 @@ function CustomToolbar(props) {
       <Typography fontWeight="medium" sx={{ flex: 1, mx: 0.5 }}>
         {title}
       </Typography>
-      <Tooltip title="Add new commodity">
+      <Tooltip title="Add">
         <ToolbarButton
           aria-describedby="new-panel"
-          onClick={() => navigate(redirect)}
+          onClick={onClick}
         >
           <AddIcon fontSize="small" />
         </ToolbarButton>

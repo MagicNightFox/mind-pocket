@@ -3,12 +3,10 @@ import {Link as ReactLink} from "react-router";
 import {Box, ListItemButton, MenuItem, Menu, Select, IconButton} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useViewport} from "../../context/ViewportContext.jsx";
-import {useLang} from "../../lang/LanguageContext.jsx";
 import LogoComponent from "../logo-component.jsx";
 
 const UnauthTopBar = () => {
-  const viewport = useViewport();
-  const {t, setLang, lang} = useLang();
+  const {viewport} = useViewport();
 
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const menuOpen = Boolean(menuAnchorEl);
@@ -23,12 +21,12 @@ const UnauthTopBar = () => {
       <LogoComponent />
     </Box>
     <Box display="flex" gap="8px">
-      <Select variant="standard" value={lang} onChange={(event) => setLang(event.target.value)}>
+      <Select variant="standard" value={"en"}>
         <MenuItem value="en">
-          {t.Lang.English}
+          English
         </MenuItem>
         <MenuItem value="cs">
-          {t.Lang.Czech}
+          Czech
         </MenuItem>
       </Select>
       {viewport === "phone" ? <><IconButton><MenuIcon onClick={handleMenuClick}/></IconButton>
@@ -66,17 +64,17 @@ const UnauthTopBar = () => {
               transformOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
           <MenuItem component={ReactLink} to="/about">
-            {t.Breadcrumbs.About}
+            About
           </MenuItem>
           <MenuItem component={ReactLink} to="/">
-            {t.LoginComponent.LoginTitle}
+            Sign In
           </MenuItem>
         </Menu></> : <>
         <ListItemButton component={ReactLink} to="/about">
-          {t.Breadcrumbs.About}
+          About
         </ListItemButton>
         <ListItemButton component={ReactLink} to="/">
-          {t.LoginComponent.LoginTitle}
+          Sign In
         </ListItemButton>
       </>}
     </Box>

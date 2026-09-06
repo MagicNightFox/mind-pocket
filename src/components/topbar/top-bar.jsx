@@ -6,13 +6,14 @@ import AccountContainer from "./account-container.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 const TopBar = (props) => {
-  const viewport = useViewport();
+  const {viewport, menuOpen, setMenuOpen} = useViewport();
   const {user} = useAuth();
   const {breadcrumbList, leftBar, rightBar} = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+      setMenuOpen(!menuOpen);
   };
   return (
     <Box sx={{ flexGrow: 1 }} >

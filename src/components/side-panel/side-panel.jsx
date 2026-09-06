@@ -3,13 +3,14 @@ import {
   Divider,
   Drawer,
   Toolbar,
-  createTheme, ThemeProvider, Typography
+  createTheme, ThemeProvider, Typography, Box
 } from "@mui/material";
 import MenuList from "./menu-list.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
+import dayjs from "dayjs";
 const SidePanel = () => {
-  const viewport = useViewport();
-  const drawerWidth = viewport === "phone" ? 0 : 256;
+  const {viewport, setMenuOpen, menuOpen} = useViewport();
+  const drawerWidth = viewport === "phone" ? "90%" : 256;
 
   const theme = createTheme({
     palette: {
@@ -77,7 +78,9 @@ const SidePanel = () => {
   })
 
   return <ThemeProvider theme={theme}>
-    <Drawer anchor="left" variant="persistent" open={viewport !== "phone"} sx={{
+    <Drawer anchor="left" variant={viewport !== "phone" ? "permanent" : "temporary"} open={viewport !== "phone" ? true : menuOpen}
+            onClose={() => setMenuOpen(false)}
+            sx={{
       width: drawerWidth,
       flexShrink: 0,
       '& .MuiDrawer-paper': {
@@ -85,13 +88,21 @@ const SidePanel = () => {
         boxSizing: 'border-box',
       }
     }}>
-      <Toolbar>
-        <Typography component="h1" variant="h6" fontFamily="Intel One Mono">Workspace</Typography>
-      </Toolbar>
-      <Divider/>
-      <MenuList />
+      <Box display="flex" flexDirection="column" height="100%">
+        <Toolbar>
+          <Typography component="h1" variant="h6" fontFamily="Intel One Mono">Workspace</Typography>
+        </Toolbar>
+        <Divider/>
+        <Typography component="p" variant="p" fontFamily="Intel One Mono" textAlign="center">{dayjs().format("DD.MM.YYYY HH:mm:ss")}</Typography>
+        <Divider/>
+        <MenuList/>
+        <Box marginTop="auto" padding="8px">
+          <Typography component="p" variant="p" fontFamily="Intel One Mono" textAlign="center" fontSize="8pt">v0.1 | <Link to="/"> log </Link> </Typography>
+        </Box>
+        </Box>
     </Drawer>
   </ThemeProvider>
 }
 
 export default SidePanel;
+

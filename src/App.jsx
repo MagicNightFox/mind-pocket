@@ -1,10 +1,11 @@
 import './App.css'
-import {lazy} from "react"
+import {lazy, useState} from "react"
 import {BrowserRouter, Route, Routes} from "react-router";
 import SidePanel from "./components/side-panel/side-panel.jsx";
 import {useAuth} from "./context/AuthContext.jsx";
 import {CircularProgress, Box} from "@mui/material";
 import CopyrightComponent from "./components/copyright-component.jsx";
+import {useViewport} from "./context/ViewportContext.jsx";
 
 const LoginPage = lazy(() => import("./routes/unauthenticated/login-page.jsx"));
 const AccountPage = lazy(() => import("./routes/account/account-page.jsx"));
@@ -17,9 +18,13 @@ const FictionListPage = lazy(() => import("./routes/fiction/fiction-list-route.j
 const CharacterListPage = lazy(() => import("./routes/character/character-list-route.jsx"));
 const CharacterDetailPage = lazy(() => import("./routes/character/character-detail-route.jsx"));
 const NotesDashboardPage = lazy(() => import("./routes/notes/dashboard.jsx"));
+const InventoryPage = lazy(() => import("./routes/household/inventory/inventory.jsx"));
+const ProductDetailPage = lazy(() => import("./routes/household/inventory/product-detail-route.jsx"));
+const InventoryAddBatchPage = lazy(() => import("./routes/household/inventory/inventory-batch-add-route.jsx"));
 
 function App() {
   const {user, loading} = useAuth();
+
   if(loading) {
     return <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="80vh">
       <CircularProgress/>
@@ -47,6 +52,30 @@ function App() {
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/notes" element={<NotesDashboardPage />} />
 
+          {/* Notes Feature Routes (Nested) */}
+          <Route path="/notes">
+            <Route index element={<NotesDashboardPage />} />
+            <Route path="list" element={<PageNotFound />} />
+            <Route path=":noteId" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
+          {/* Journal Feature Routes (Nested) */}
+          <Route path="/journal">
+            <Route index element={<PageNotFound />} />
+            <Route path="list" element={<PageNotFound />} />
+            <Route path=":noteId" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
+          {/* Shifting Feature Routes (Nested) */}
+          <Route path="/shifting">
+            <Route index element={<PageNotFound />} />
+            <Route path="list" element={<PageNotFound />} />
+            <Route path=":noteId" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
           {/* Fiction Feature Routes (Nested) */}
           <Route path="/fiction">
             <Route index element={<FictionListPage />} />
@@ -57,13 +86,33 @@ function App() {
               <Route path="list" element={<CharacterListPage />} />
               <Route path=":characterId" element={<CharacterDetailPage />} />
             </Route>
-            <Route path="*" element={<SchedulePage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
 
           {/* Gaming Feature Routes (Nested) */}
           <Route path="/gaming">
-            <Route index element={<SchedulePage />} />
-            <Route path="*" element={<SchedulePage />} />
+            <Route index element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
+          {/* Inventory Feature Routes (Nested) */}
+          <Route path="/inventory">
+            <Route index element={<InventoryPage />} />
+            <Route path="product">
+              <Route path=":id" element={<ProductDetailPage />}/>
+            </Route>
+            <Route path ="batch" element={<InventoryAddBatchPage />}/>
+            <Route path="list" element={<PageNotFound />} />
+            <Route path=":id" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
+          {/* Recipes Feature Routes (Nested) */}
+          <Route path="/recipes">
+            <Route index element={<PageNotFound />} />
+            <Route path="list" element={<PageNotFound />} />
+            <Route path=":noteId" element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
 
           {/* Catch-all for 404s */}

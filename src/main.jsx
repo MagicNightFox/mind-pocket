@@ -6,7 +6,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import './index.css'
 import App from './App.jsx'
 import {AuthProvider} from "./components/providers/auth-provider.jsx";
-import LanguageProvider from "./components/providers/language-provider.jsx";
 import ViewportProvider from "./components/providers/viewport-provider.jsx";
 import {CookiesProvider} from "react-cookie";
 import CustomThemeProvider from "./components/providers/theme-provider.jsx";
@@ -20,7 +19,6 @@ createRoot(document.getElementById('root')).render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <ViewportProvider>
           <AuthProvider>
-            <LanguageProvider>
               <CustomThemeProvider>
                 <TimeFrameProvider>
                   <QueryClientProvider client={queryClient}>
@@ -28,7 +26,6 @@ createRoot(document.getElementById('root')).render(
                   </QueryClientProvider>
                 </TimeFrameProvider>
               </CustomThemeProvider>
-            </LanguageProvider>
           </AuthProvider>
         </ViewportProvider>
       </LocalizationProvider>
