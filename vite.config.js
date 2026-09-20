@@ -8,7 +8,7 @@ export default defineConfig({
     allowedHosts: ["night-fox.tail7f5954.ts.net"], // your existing fix
     proxy: {
       '/api': {
-        target: 'http://192.168.244.25:3001',
+        target: 'http://192.168.63.25:3001',
         changeOrigin: true,
         // This regex strips "/api" off the URL before sending to your backend
         rewrite: (path) => path.replace(/^\/api/, '')

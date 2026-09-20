@@ -1,6 +1,7 @@
 import axios, {AxiosError} from "axios";
 import {SERVER_BASE_URI as BASE_URI} from "./Constants.js";
 axios.defaults.withCredentials = true;
+
 async function register(dtoIn){
   let data;
   try {
@@ -87,6 +88,16 @@ async function update(updatedData){
 }
 
 //* NOTES *//
+
+export const notes = {
+  get: async (id) => await axios.get(`${BASE_URI}/note/get?id=${id}`),
+  list: async (dtoIn) => await axios.get(`${BASE_URI}/note/list`, dtoIn, {
+    headers: {
+      'Content-Type': 'application/json',
+
+    }
+  })
+};
 
 async function listNotes() {
   let response = await axios.get(`${BASE_URI}/note/list`);

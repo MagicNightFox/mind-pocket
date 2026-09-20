@@ -18,7 +18,7 @@ const TopBar = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }} >
       <Toolbar>
-        {viewport === "phone" && <IconButton
+        {viewport !== "pc" && <IconButton
           size="large"
           edge="start"
           color="inherit"

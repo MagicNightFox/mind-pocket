@@ -22,6 +22,8 @@ const InventoryPage = lazy(() => import("./routes/household/inventory/inventory.
 const ProductDetailPage = lazy(() => import("./routes/household/inventory/product-detail-route.jsx"));
 const InventoryAddBatchPage = lazy(() => import("./routes/household/inventory/inventory-batch-add-route.jsx"));
 
+
+
 function App() {
   const {user, loading} = useAuth();
 
@@ -46,7 +48,7 @@ function App() {
       <Box flexGrow={1} sx={{overflowX:"hidden"}} position="relative">
         <Routes>
           {/* General Routes */}
-          <Route path="/" element ={<PersonalDashboardPage />} />
+          <Route index element ={<PersonalDashboardPage />} />
           <Route path="/about" element={<AboutAuthPage />} />
           <Route path="/account" element ={<AccountPage />} />
           <Route path="/schedule" element={<SchedulePage />} />

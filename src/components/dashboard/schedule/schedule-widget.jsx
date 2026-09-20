@@ -1,13 +1,73 @@
 import {Box} from "@mui/material";
+import { EventCalendar } from '@mui/x-scheduler/event-calendar';
+import {useState} from "react";
+import {useTimeFrame} from "../../../context/TimeFrameContext.jsx";
 
 
+const initialEvents = [
+    {
+        id: 1,
+        title: 'Team Meeting',
+        start: '2024-01-15T10:00:00',
+        end: '2024-01-15T11:00:00',
+    },
+    {
+        id: 2,
+        title: 'Project Review',
+        start: '2024-01-16T14:00:00',
+        end: '2026-01-16T15:30:00',
+    },
+    {
+        id: 3,
+        title: 'Client Call',
+        start: '2026-01-17T09:00:00',
+        end: '2026-01-17T10:00:00',
+    },
+];
 
-const ScheduleWidget = () => {
+const ScheduleWidget = (props) => {
     // should be able to adapt to any width and height higher than a certain value
-
-    return <Box>
-    <Box width="2000px" height="100px" sx={{backgroundColor: "red"}}></Box>
-    </Box>
+    const {height = 320} = props;
+    const [events, setEvents] = useState(initialEvents);
+    const {currentDate, setCurrentDate} = useTimeFrame()
+    const onDateChange = (value) => {
+        setCurrentDate(value);
+    }
+    const time = new Date().getHours();
+    const viewConfig = {
+        day: {
+            initialScrollTime: time
+        },
+        week: {
+            initialScrollTime: time
+        }
+    }
+    console.log(time);
+    return (
+        <Box style={{ height: height, width: '100%' }} flexGrow={1}>
+            <EventCalendar
+                events={events}
+                onEventsChange={setEvents}
+                defaultVisibleDate={new Date()}
+                viewConfig={viewConfig}
+                apiRef={{
+                    currentDate: currentDate,
+                    current: { setVisibleDate: onDateChange }
+                }}
+                defaultView="day"
+                sx={{
+                    '& .MuiEventCalendar-dayTimeGridHeaderContent': {
+                        flexDirection: 'row-reverse',
+                    },
+                    '& .MuiEventCalendar-dayTimeGridHeaderDayNumber': {
+                        fontSize: '16px',
+                        width: '24px',
+                        height: '24px',
+                    }
+                }}
+            />
+        </Box>
+    );
 }
 
 export default ScheduleWidget;

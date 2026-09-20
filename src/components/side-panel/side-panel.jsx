@@ -10,7 +10,7 @@ import {useViewport} from "../../context/ViewportContext.jsx";
 import dayjs from "dayjs";
 const SidePanel = () => {
   const {viewport, setMenuOpen, menuOpen} = useViewport();
-  const drawerWidth = viewport === "phone" ? "90%" : 256;
+  const drawerWidth = viewport !== "pc" ? "90%" : 256;
 
   const theme = createTheme({
     palette: {
@@ -78,7 +78,7 @@ const SidePanel = () => {
   })
 
   return <ThemeProvider theme={theme}>
-    <Drawer anchor="left" variant={viewport !== "phone" ? "permanent" : "temporary"} open={viewport !== "phone" ? true : menuOpen}
+    <Drawer anchor="left" variant={viewport === "pc" ? "permanent" : "temporary"} open={viewport === "pc" ? true : menuOpen}
             onClose={() => setMenuOpen(false)}
             sx={{
       width: drawerWidth,

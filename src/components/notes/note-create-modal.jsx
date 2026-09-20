@@ -1,6 +1,6 @@
 import {Box, Divider, IconButton, Modal} from "@mui/material";
 import {MenuBar} from "../editor/menu-bar.jsx";
-import {EditorContent} from "@tiptap/react";
+import {EditorContent, useEditor} from "@tiptap/react";
 import {Editor} from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -10,7 +10,7 @@ import {QUERY_KEYS} from "../../Constants.js";
 
 
 const NoteCreateModal = (props) => {
-    const noteEditor = new Editor({
+    const noteEditor = useEditor({
         extensions: [StarterKit],
     })
     const queryClient = useQueryClient();
@@ -45,6 +45,8 @@ const NoteCreateModal = (props) => {
                 color: "yellow"
             }
             mutation.mutate(dtoIn);
+            console.log(noteEditor.getHTML());
+            noteEditor.commands.clearContent();
         }
         onClose()
     }

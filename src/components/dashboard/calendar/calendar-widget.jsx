@@ -40,7 +40,7 @@ export default function CalendarWidget({ selectedDate, onDateChange }) {
     return (
         <Paper variant="elevation" elevation={calendarIsHovered ? 0 : 0} sx={{ p: 1.5, borderRadius: "16px" }} onMouseEnter={() => setCalendarIsHovered(true)} onMouseLeave={() => setCalendarIsHovered(false)}>
             <Box display="flex" sx={{ px: 1, pt: 0.5 }}>
-                <Typography variant="overline" sx={{ color: 'text.secondary', letterSpacing: '0.08em', flexGrow: 1 }}>
+                <Typography variant="overline" fontFamily="Intel One Mono" sx={{ color: 'text.secondary', letterSpacing: '0.08em', flexGrow: 1 }}>
                     Calendar
                 </Typography>
                 { calendarIsHovered && <Box>
@@ -62,10 +62,12 @@ export default function CalendarWidget({ selectedDate, onDateChange }) {
                     horizontal: 'center',
                 }}
             >
-                <FormGroup>
-                    <FormControlLabel control={<Switch onChange={(event) => {setUserSettings({...userSettings, displayWeekNumber: event.target.checked})}} />} label="Show week number" />
-                    <FormControlLabel control={<Switch defaultChecked label="Show days outside current month" onChange={(event) => {setUserSettings({...userSettings, showDaysOutsideCurrentMonth: event.target.checked})}} />} label="Show days outside current month" />
-                </FormGroup>
+                <Box padding="16px">
+                    <FormGroup>
+                        <FormControlLabel control={<Switch onChange={(event) => {setUserSettings({...userSettings, displayWeekNumber: event.target.checked})}} />} label="Show week number" />
+                        <FormControlLabel control={<Switch defaultChecked label="Show days outside current month" onChange={(event) => {setUserSettings({...userSettings, showDaysOutsideCurrentMonth: event.target.checked})}} />} label="Show days outside current month" />
+                    </FormGroup>
+                </Box>
             </Popover>
             <DateCalendar
                 value={dayjs(selectedDate)}

@@ -17,6 +17,7 @@ const Note = (props) => {
     const [anchor, setAnchor] = useState(null);
     const noteEditor = new Editor({
         extensions: [StarterKit],
+        editable: false
     })
     noteEditor.commands.setContent(JSON.parse(content));
     const mutation = useMutation({
@@ -33,16 +34,15 @@ const Note = (props) => {
     }
     return <Paper
         elevation={isHovered? 3 : 1} onMouseEnter={() => setHovered(true)} onMouseLeave={()=> setHovered(false)}
-        sx={{position:"relative", width: "196px", minHeight: "128px", background: "#ffff80", padding: "8px", overflow: "hidden scroll", overflowWrap: "break-word", display: "flex", flexDirection: "column"}}
+        sx={{position:"relative", width: "196px", minHeight: "128px", background: "#ffffb2", padding: "8px", overflow: "hidden scroll", overflowWrap: "break-word", display: "flex", flexDirection: "column", flexShrink: 0}}
     >
-        <Box display="flex" justifyContent="space-between">
-            <IconButton size="small"><Edit fontSize="16pt"/></IconButton>
+        {isHovered && <Box display="flex" justifyContent="end" position="absolute" width="inherit" zIndex={2}>
             <IconButton size="small" onClick={(event) => {
                 setAnchor(event.currentTarget);
                 setConfirmDeleteOpen(true)
             }}><Delete color="error" fontSize="16pt"/></IconButton>
-        </Box>
-        <Box padding="8px" overflow="scroll" sx={{backgroundColor:"#ffffb2", boxShadow: "inset 0px 0px 4px 0px rgba(0,0,0,0.10)", }}>
+        </Box>}
+        <Box padding="8px" overflow="scroll">
             <EditorContent editor={noteEditor} />
         </Box>
         <Popover anchorEl={anchor}
