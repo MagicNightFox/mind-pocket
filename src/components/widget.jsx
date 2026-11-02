@@ -11,7 +11,7 @@ import {useState} from "react";
  * @constructor
  */
 const Widget = (props) => {
-  const {children, title, actionBar} = props;
+  const {children, title, actionBar, ...other} = props;
   const [hover, setHover] = useState(false);
   return <Box
       bgcolor="white"
@@ -19,6 +19,7 @@ const Widget = (props) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       overflow="scroll"
+      {...other}
   >
     {(title || actionBar) && (<Box>
       <Box display="flex" flexDirection="row" alignItems={title ? "space-between" : "end"} padding="12px 16px 0px">

@@ -1,17 +1,13 @@
 import {Box, Button, IconButton, Modal, Paper, Popover, Typography} from "@mui/material";
 import {useState} from "react";
 import {Delete, Edit} from "@mui/icons-material";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {deleteNote} from "../../calls.js";
-import {QUERY_KEYS} from "../../Constants.js";
 import {Editor} from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import {EditorContent} from "@tiptap/react";
 
 
 const Note = (props) => {
-    const {data, content, onDeleted} = props;
-    const queryClient = useQueryClient();
+    const {data, content, onDelete} = props;
     const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
     const [isHovered, setHovered] = useState(false);
     const [anchor, setAnchor] = useState(null);
@@ -20,17 +16,9 @@ const Note = (props) => {
         editable: false
     })
     noteEditor.commands.setContent(JSON.parse(content));
-    const mutation = useMutation({
-        mutationFn: deleteNote,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.noteQueryData] })
-        },
-    })
     const onConfirmDelete = () => {
         setConfirmDeleteOpen(false);
-        mutation.mutate({id: data._id});
-        onDeleted();
+        onDelete({id: data._id});
     }
     return <Paper
         elevation={isHovered? 3 : 1} onMouseEnter={() => setHovered(true)} onMouseLeave={()=> setHovered(false)}

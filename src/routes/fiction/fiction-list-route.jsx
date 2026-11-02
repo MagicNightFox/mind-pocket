@@ -6,7 +6,7 @@ const breadcrumbs = [
     {link: "/fiction/list", title: "Fiction List"}
 ];
 
-const FictionListRoute = () => {
+const FictionListRoute = (props) => {
     return <>
         <TopBar breadcrumbList={breadcrumbs}/>
         <Fiction />

@@ -4,16 +4,14 @@ import {EditorContent, useEditor} from "@tiptap/react";
 import {Editor} from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import {createNote} from "../../calls.js";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {QUERY_KEYS} from "../../Constants.js";
+import {useNotes} from "../../context/NoteContext.jsx";
 
 
 const NoteCreateModal = (props) => {
     const noteEditor = useEditor({
         extensions: [StarterKit],
     })
-    const queryClient = useQueryClient();
+    const {create} = useNotes();
     const {open, onClose} = props;
     const style= {
         position: 'absolute',
@@ -31,20 +29,13 @@ const NoteCreateModal = (props) => {
         flexDirection: 'column',
         gap: "8px"
     }
-    const mutation = useMutation({
-        mutationFn: createNote,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.noteQueryData] })
-        },
-    })
     const saveNote = () => {
         if(!noteEditor.isEmpty){
             const dtoIn = {
                 editorContent: noteEditor.getJSON(),
                 color: "yellow"
             }
-            mutation.mutate(dtoIn);
+            create(dtoIn);
             console.log(noteEditor.getHTML());
             noteEditor.commands.clearContent();
         }

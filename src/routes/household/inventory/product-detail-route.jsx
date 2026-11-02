@@ -39,6 +39,7 @@ const ProductDetailRoute = () => {
                         <img src={product?.data?.imageUrl} style={{maxWidth: "256px"}}/>
                     </Box>
                     <Box flexGrow={1} display="flex" flexDirection="column" gap="16px">
+                        <TextField value={product.data.code} disabled={!isEditing}/>
                         <TextField value={product.data.name} disabled={!isEditing}/>
                         <TextField value={product.data.manufacturer} disabled={!isEditing}/>
                         <TextField value={product.data.type} disabled={!isEditing}/>
@@ -50,7 +51,7 @@ const ProductDetailRoute = () => {
                     <Button onClick={() => setConfirmationModalOpen(true)}>DELETE</Button>
                 </Row>
                 <Row>
-                    <InventoryDataList onClickAddInventoryItem={() => setAddInventoryItemModalOpen(true)} dtoIn={{productId: product?._id}}/>
+                    <InventoryDataList onClickAddInventoryItem={() => setAddInventoryItemModalOpen(true)} dtoIn={{productId: product?._id}} itemNavigation={false}/>
                 </Row>
                 <Modal open={confirmationModalOpen} onClose={() => setConfirmationModalOpen(false)} sx={{justifySelf: "center", alignSelf: "center"}}>
                     <Paper sx={{maxWidth: "256px", }}>

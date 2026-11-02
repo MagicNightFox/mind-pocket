@@ -16,7 +16,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import {update} from "../../calls.js";
 
 
-const ShortcutWidget = () => {
+const ShortcutWidget = (props) => {
   const {user} = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const [shortcut, setShortcut] = useState(false);
@@ -37,7 +37,7 @@ const ShortcutWidget = () => {
     handleClose();
   }
 
-  return <Box>
+  return <Box {...props}>
     {user?.shortcuts?.map((item, i) => (
       <Tooltip title={item.title} key={"shortcut" + i}>
         <IconButton href={item.url} target="_blank" rel="noopener noreferrer">

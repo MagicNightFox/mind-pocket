@@ -5,9 +5,7 @@ import {DataGrid} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import {CircularProgress} from "@mui/material";
 import CustomToolbar from "../../material-overrides/custom-toolbar.jsx";
-import {useQuery} from "@tanstack/react-query";
-import {QUERY_KEYS} from "../../../Constants.js";
-import {listProducts} from "../../../calls.js";
+import {useProducts} from "../../../context/ProductContext.jsx";
 const columns = [
     { field: "imageUrl", headerName: "Image", width: 32, renderCell: (params) => (<Box> <img src={params.value} width="32px"/></Box>) },
     { field: "_id", headerName: "Id", width: 16 },
@@ -20,9 +18,9 @@ const columns = [
 ];
 
 const ProductDataList = (props) => {
-    const {onClickAddProduct, dtoIn} = props;
+    const {onClickAddProduct, itemNavigation = true, dtoIn} = props;
     const navigate = useNavigate();
-    const {data: products, error, isLoading} = useQuery({queryKey:[QUERY_KEYS.productQueryData, dtoIn], queryFn: () => listProducts(dtoIn)});
+    const {data: products, error, isLoading} = useProducts();
     if(isLoading){
         return <CircularProgress/>;
     }
@@ -48,9 +46,9 @@ const ProductDataList = (props) => {
         }}
         getRowId={(row) => row._id}
         pageSizeOptions={[5, 10, 20]}
-        onRowClick={(params) => {
-            navigate("/inventory/product/" + params.id);
-        }}
+        onRowClick={itemNavigation ? (params) => {
+            navigate("/inventory/products/" + params.id);
+        } : null}
         disableRowSelectionOnClick
         showToolbar
         slots={{ toolbar: () => CustomToolbar({onClick: () => {onClickAddProduct()}, title: "Products"}) }}

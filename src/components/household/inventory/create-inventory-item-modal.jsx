@@ -2,26 +2,17 @@ import {Box, IconButton, Modal, Paper, TextField} from "@mui/material";
 import {CheckOutlined, CloseOutlined, QrCodeScannerOutlined} from "@mui/icons-material";
 import Scanner from "../../scanner/scanner.jsx";
 import {useState} from "react";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createInventoryItem} from "../../../calls.js";
-import {QUERY_KEYS} from "../../../Constants.js";
+import {useInventoryItems} from "../../../context/InventoryItemContext.jsx";
 
 const CreateInventoryItemModal = (props) => {
     const {open, onClose, dtoIn} = props;
     const [eanValue, setEanValue] = useState(dtoIn?.code);
-    const queryClient = useQueryClient();
-    const mutation = useMutation({
-        mutationFn: createInventoryItem,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.inventoryItemQueryData] })
-        },
-    })
+    const {create} = useInventoryItems()
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
-        mutation.mutate(formJson);
+        create(formJson);
         onClose();
     }
     return <Modal open={open} onClose={onClose} sx={{justifySelf: "center", alignSelf: "center"}}>

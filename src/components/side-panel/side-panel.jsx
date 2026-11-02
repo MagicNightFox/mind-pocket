@@ -8,6 +8,7 @@ import {
 import MenuList from "./menu-list.jsx";
 import {useViewport} from "../../context/ViewportContext.jsx";
 import dayjs from "dayjs";
+import Clock from "../clock.jsx";
 const SidePanel = () => {
   const {viewport, setMenuOpen, menuOpen} = useViewport();
   const drawerWidth = viewport !== "pc" ? "90%" : 256;
@@ -93,7 +94,7 @@ const SidePanel = () => {
           <Typography component="h1" variant="h6" fontFamily="Intel One Mono">Workspace</Typography>
         </Toolbar>
         <Divider/>
-        <Typography component="p" variant="p" fontFamily="Intel One Mono" textAlign="center">{dayjs().format("DD.MM.YYYY HH:mm:ss")}</Typography>
+        <Typography component="p" variant="p" fontFamily="Intel One Mono" textAlign="center"><Clock /></Typography>
         <Divider/>
         <MenuList/>
         <Box marginTop="auto" padding="8px">

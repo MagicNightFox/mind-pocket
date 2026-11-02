@@ -9,10 +9,11 @@ import {useQuery} from "@tanstack/react-query";
 import {CircularProgress} from "@mui/material";
 import CustomToolbar from "../../material-overrides/custom-toolbar.jsx";
 import {QUERY_KEYS} from "../../../Constants.js";
+import {ErrorOutline} from "@mui/icons-material";
 
 
 const InventoryDataList = (props) => {
-    const {onClickAddInventoryItem, dtoIn} = props
+    const {onClickAddInventoryItem, itemNavigation = true, dtoIn} = props
     const navigate = useNavigate();
     const {data: products, productError, productIsLoading} = useQuery({queryKey:[QUERY_KEYS.productQueryData], queryFn: () => listProducts()});
     const {data: inventoryItems, error, isLoading} = useQuery({queryKey:[QUERY_KEYS.inventoryItemQueryData, dtoIn], queryFn: () => listInventoryItems(dtoIn)});
@@ -21,7 +22,7 @@ const InventoryDataList = (props) => {
         return <CircularProgress/>;
     }
     if(error || productError){
-        return <>Oops</>;
+        return <ErrorOutline />;
     }
     else {
         const columns = [
@@ -45,9 +46,9 @@ const InventoryDataList = (props) => {
             }}
             getRowId={(row) => row._id}
             pageSizeOptions={[5, 10, 20]}
-            onRowClick={(params) => {
-                navigate("/inventory/item/" + params.id);
-            }}
+            onRowClick={itemNavigation ? (params) => {
+                navigate("/inventory/items/" + params.id);
+            } : null}
             disableRowSelectionOnClick
             showToolbar
             slots={{

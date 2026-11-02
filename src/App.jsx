@@ -1,5 +1,5 @@
 import './App.css'
-import {lazy, useState} from "react"
+import {lazy, Suspense, useState} from "react"
 import {BrowserRouter, Route, Routes} from "react-router";
 import SidePanel from "./components/side-panel/side-panel.jsx";
 import {useAuth} from "./context/AuthContext.jsx";
@@ -21,6 +21,17 @@ const NotesDashboardPage = lazy(() => import("./routes/notes/dashboard.jsx"));
 const InventoryPage = lazy(() => import("./routes/household/inventory/inventory.jsx"));
 const ProductDetailPage = lazy(() => import("./routes/household/inventory/product-detail-route.jsx"));
 const InventoryAddBatchPage = lazy(() => import("./routes/household/inventory/inventory-batch-add-route.jsx"));
+// Fiction
+const FictionDashboardPage = lazy(() => import("./routes/fiction/fiction-dashboard.jsx"));
+
+//Inventory Items
+const InventoryItemsPage = lazy(() => import("./routes/household/inventory/items.jsx"));
+const InventoryItemAddPage = lazy(() => import("./routes/household/inventory/add-item.jsx"));
+const InventoryItemDetailPage = lazy(() => import("./routes/household/inventory/inventory-item-detail-route.jsx"));
+
+//Products
+const ProductsPage = lazy(() => import("./routes/household/inventory/products.jsx"));
+const ProductAddPage = lazy(() => import("./routes/household/inventory/add-product.jsx"));
 
 
 
@@ -46,80 +57,89 @@ function App() {
     <Box sx={{display:"flex", minHeight: "100vh", overflowX:"hidden", bgcolor: "#FAFAFA"}} >
       <SidePanel/>
       <Box flexGrow={1} sx={{overflowX:"hidden"}} position="relative">
-        <Routes>
-          {/* General Routes */}
-          <Route index element ={<PersonalDashboardPage />} />
-          <Route path="/about" element={<AboutAuthPage />} />
-          <Route path="/account" element ={<AccountPage />} />
-          <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/notes" element={<NotesDashboardPage />} />
+        <Suspense fallback={<div><CircularProgress/></div>}>
+          <Routes>
+            {/* General Routes */}
+            <Route index element ={<PersonalDashboardPage />} />
+            <Route path="/about" element={<AboutAuthPage />} />
+            <Route path="/account" element ={<AccountPage />} />
+            <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/notes" element={<NotesDashboardPage />} />
 
-          {/* Notes Feature Routes (Nested) */}
-          <Route path="/notes">
-            <Route index element={<NotesDashboardPage />} />
-            <Route path="list" element={<PageNotFound />} />
-            <Route path=":noteId" element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-
-          {/* Journal Feature Routes (Nested) */}
-          <Route path="/journal">
-            <Route index element={<PageNotFound />} />
-            <Route path="list" element={<PageNotFound />} />
-            <Route path=":noteId" element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-
-          {/* Shifting Feature Routes (Nested) */}
-          <Route path="/shifting">
-            <Route index element={<PageNotFound />} />
-            <Route path="list" element={<PageNotFound />} />
-            <Route path=":noteId" element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-
-          {/* Fiction Feature Routes (Nested) */}
-          <Route path="/fiction">
-            <Route index element={<FictionListPage />} />
-            <Route path="list" element={<FictionListPage />} />
-            <Route path="simp-list" element={<CharacterListPage />} />
-            <Route path=":fictionId" element={<SchedulePage />} />
-            <Route path="character">
-              <Route path="list" element={<CharacterListPage />} />
-              <Route path=":characterId" element={<CharacterDetailPage />} />
+            {/* Notes Feature Routes (Nested) */}
+            <Route path="/notes">
+              <Route index element={<NotesDashboardPage />} />
+              <Route path="list" element={<PageNotFound />} />
+              <Route path=":noteId" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
 
-          {/* Gaming Feature Routes (Nested) */}
-          <Route path="/gaming">
-            <Route index element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-
-          {/* Inventory Feature Routes (Nested) */}
-          <Route path="/inventory">
-            <Route index element={<InventoryPage />} />
-            <Route path="product">
-              <Route path=":id" element={<ProductDetailPage />}/>
+            {/* Journal Feature Routes (Nested) */}
+            <Route path="/journal">
+              <Route index element={<PageNotFound />} />
+              <Route path="list" element={<PageNotFound />} />
+              <Route path=":noteId" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
-            <Route path ="batch" element={<InventoryAddBatchPage />}/>
-            <Route path="list" element={<PageNotFound />} />
-            <Route path=":id" element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
 
-          {/* Recipes Feature Routes (Nested) */}
-          <Route path="/recipes">
-            <Route index element={<PageNotFound />} />
-            <Route path="list" element={<PageNotFound />} />
-            <Route path=":noteId" element={<PageNotFound />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
+            {/* Shifting Feature Routes (Nested) */}
+            <Route path="/shifting">
+              <Route index element={<PageNotFound />} />
+              <Route path="list" element={<PageNotFound />} />
+              <Route path=":noteId" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
 
-          {/* Catch-all for 404s */}
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+            {/* Fiction Feature Routes (Nested) */}
+            <Route path="/fiction">
+              <Route index element={<FictionDashboardPage />} />
+              <Route path="list" element={<FictionListPage />} />
+              <Route path="simp-list" element={<CharacterListPage />} />
+              <Route path=":fictionId" element={<SchedulePage />} />
+              <Route path="character">
+                <Route path="list" element={<CharacterListPage />} />
+                <Route path=":characterId" element={<CharacterDetailPage />} />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+
+            {/* Gaming Feature Routes (Nested) */}
+            <Route path="/gaming">
+              <Route index element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+
+            {/* Inventory Feature Routes (Nested) */}
+            <Route path="/inventory">
+              <Route index element={<InventoryPage />} />
+              <Route path="items">
+                <Route index element={<InventoryItemsPage />} />
+                <Route path="add" element={<InventoryItemAddPage />} />
+                <Route path=":id" element={<InventoryItemDetailPage />}/>
+              </Route>
+              <Route path="products">
+                <Route index element={<ProductsPage />} />
+                <Route path="add" element={<ProductAddPage />} />
+                <Route path=":id" element={<ProductDetailPage />}/>
+              </Route>
+              <Route path ="batch" element={<InventoryAddBatchPage />}/>
+              <Route path="list" element={<PageNotFound />} />
+              <Route path=":id" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+
+            {/* Recipes Feature Routes (Nested) */}
+            <Route path="/recipes">
+              <Route index element={<PageNotFound />} />
+              <Route path="list" element={<PageNotFound />} />
+              <Route path=":noteId" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+
+            {/* Catch-all for 404s */}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
         <CopyrightComponent/>
       </Box>
     </Box>

@@ -1,27 +1,18 @@
-import {Box, Button, IconButton, Modal, Paper, TextField} from "@mui/material";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createProduct} from "../../../calls.js";
-import {QUERY_KEYS} from "../../../Constants.js";
+import {Box, IconButton, Modal, Paper, TextField} from "@mui/material";
 import {CheckOutlined, CloseOutlined, QrCodeScannerOutlined} from "@mui/icons-material";
 import {useState} from "react";
 import Scanner from "../../scanner/scanner.jsx";
+import {useProducts} from "../../../context/ProductContext.jsx";
 
 const CreateProductModal = (props) => {
     const {open, onClose} = props;
     const [eanValue, setEanValue] = useState(null);
-    const queryClient = useQueryClient();
-    const mutation = useMutation({
-        mutationFn: createProduct,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.productQueryData] })
-        },
-    })
+    const {create} = useProducts()
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
-        mutation.mutate(formJson);
+        create(formJson);
         onClose();
     }
     return <Modal open={open} onClose={onClose} sx={{justifySelf: "center", alignSelf: "center"}}>

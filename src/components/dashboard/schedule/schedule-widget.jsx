@@ -27,8 +27,8 @@ const initialEvents = [
 
 const ScheduleWidget = (props) => {
     // should be able to adapt to any width and height higher than a certain value
-    const {height = 320} = props;
-    const [events, setEvents] = useState(initialEvents);
+    const {height = 320, eventData} = props;
+    const [events, setEvents] = useState(eventData);
     const {currentDate, setCurrentDate} = useTimeFrame()
     const onDateChange = (value) => {
         setCurrentDate(value);
@@ -47,7 +47,10 @@ const ScheduleWidget = (props) => {
         <Box style={{ height: height, width: '100%' }} flexGrow={1}>
             <EventCalendar
                 events={events}
-                onEventsChange={setEvents}
+                onEventsChange={(data) => {
+                    setEvents(data)
+                    console.log(data)
+                }}
                 defaultVisibleDate={new Date()}
                 viewConfig={viewConfig}
                 apiRef={{

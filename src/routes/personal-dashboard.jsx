@@ -44,7 +44,7 @@ const PersonalDashboard = () => {
 
   return <>
     <Page breadcrumbs={breadcrumbs}>
-      <ShortcutWidget />
+      <ShortcutWidget  />
       <Row display="grid" gap="16px" gridTemplateColumns={"1fr"}>
         <Widget title="Schedule" actionBar={scheduleActionBar}>
           <ScheduleWidget height={expandedSchedule ? 600 : undefined} />

@@ -10,6 +10,9 @@ import ViewportProvider from "./components/providers/viewport-provider.jsx";
 import {CookiesProvider} from "react-cookie";
 import CustomThemeProvider from "./components/providers/theme-provider.jsx";
 import TimeFrameProvider from "./components/providers/timeframe-provider.jsx";
+import ProductProvider from "./components/providers/product-provider.jsx";
+import InventoryItemProvider from "./components/providers/inventory-item-provider.jsx";
+import NoteProvider from "./components/providers/note-provider.jsx";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +25,13 @@ createRoot(document.getElementById('root')).render(
               <CustomThemeProvider>
                 <TimeFrameProvider>
                   <QueryClientProvider client={queryClient}>
-                    <App />
+                    <ProductProvider>
+                        <InventoryItemProvider>
+                            <NoteProvider>
+                                <App />
+                            </NoteProvider>
+                        </InventoryItemProvider>
+                    </ProductProvider>
                   </QueryClientProvider>
                 </TimeFrameProvider>
               </CustomThemeProvider>

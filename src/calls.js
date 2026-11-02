@@ -113,7 +113,15 @@ async function createNote(noteData) {
   })
   return data;
 }
+async function updateNote(noteData) {
+  let data = await axios.post(`${BASE_URI}/note/update`, noteData, {
+    headers: {
+      'Content-Type': 'application/json',
 
+    }
+  });
+  return data;
+}
 async function deleteNote(noteData) {
   let data = await axios.post(`${BASE_URI}/note/delete`, noteData, {
     headers: {
@@ -234,6 +242,7 @@ export {
   update,
   listNotes,
   createNote,
+  updateNote,
   deleteNote,
   createProduct,
   getProduct,
